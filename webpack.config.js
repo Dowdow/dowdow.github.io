@@ -24,6 +24,10 @@ module.exports = {
     filename: 'index.js',
     clean: true,
   },
+  devServer: {
+    static: path.resolve(__dirname, './dist'),
+    hot: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
