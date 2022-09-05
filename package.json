@@ -9,6 +9,7 @@
     "url": "git+https://github.com/Dowdow/dowdow.github.io.git"
   },
   "scripts": {
+    "deploy": "webpack --mode=production --config webpack.config.js && gh-pages -d dist -b prod",
     "watch": "webpack --mode=development --config webpack.config.js --watch",
     "dev": "webpack --mode=development --config webpack.config.js",
     "build": "webpack --mode=production --config webpack.config.js",
@@ -30,6 +31,7 @@
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-react": "^7.31.6",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "postcss": "^8.4.16",
     "postcss-loader": "^7.0.1",
