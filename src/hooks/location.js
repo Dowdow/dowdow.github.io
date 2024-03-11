@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export const HASH_ABOUT = '#about';
-export const HASH_PROJECTS = '#projects';
+export const HASH_MIDI = '#midi';
 
 export function useLocationHash() {
   const [hash, setHash] = useState(window.location.hash);

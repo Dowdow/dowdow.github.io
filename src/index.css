@@ -1,11 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'Geist Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2) format('woff2');
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf) format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Geist Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2) format('woff2');
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf) format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Geist Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2) format('woff2');
+    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.ttf) format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Geist Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.woff2) format('woff2');
+    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf) format('ttf');
+  }
+
+  html,
   body {
-    @apply font-ubuntu bg-zinc-200;
+    @apply bg-back text-prim font-sans;
   }
 }
