@@ -55,8 +55,8 @@ export default function useGamepads() {
     window.addEventListener('gamepaddisconnected', gamepadDisconnected);
 
     return () => {
-      window.removeEventListener('gamepadconnected');
-      window.removeEventListener('gamepaddisconnected');
+      window.removeEventListener('gamepadconnected', gamepadConnected);
+      window.removeEventListener('gamepaddisconnected', gamepadDisconnected);
     };
   }, []);
 
