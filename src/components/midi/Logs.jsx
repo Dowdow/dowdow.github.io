@@ -33,7 +33,7 @@ function Log({ id, data }) {
   return (
     <div className="flex flex-row justify-between pr-3">
       <span className="w-28 text-blue-600">{`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}:${date.getMilliseconds().toString().padStart(3, '0')}`}</span>
-      <span className="w-8">{`C${data.controllerIndex}`}</span>
+      <span className="w-8">{`G${data.gamepadIndex}`}</span>
       <span className="w-8">{`${data.buttonType === 0 ? 'B' : 'A'}${data.buttonIndex}`}</span>
       <span className="w-20 uppercase">{midiTypeNameFromId(data.midiMessageType)}</span>
       <span className="w-9">{`CH${data.midiMessageChannel}`}</span>

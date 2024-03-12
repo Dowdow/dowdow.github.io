@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function GamepadButton({ activated, controllerIndex, type, index, value, send }) {
+export default function GamepadButton({ activated, gamepadIndex, type, index, value, send }) {
   const [previous, setPrevious] = useState(null);
 
   const cappedValue = type === 0 ? Math.min(Math.max(value, 0), 1) : Math.min(Math.max(value, -1), 1);
 
   useEffect(() => {
     if (previous !== null && previous !== value && activated) {
-      send(controllerIndex, type, index, type === 0 ? cappedValue : ((cappedValue + 1) / 2));
+      send(gamepadIndex, type, index, type === 0 ? cappedValue : ((cappedValue + 1) / 2));
     }
     setPrevious(value);
   }, [value]);
@@ -30,7 +30,7 @@ export default function GamepadButton({ activated, controllerIndex, type, index,
 
 GamepadButton.propTypes = {
   activated: PropTypes.bool.isRequired,
-  controllerIndex: PropTypes.number.isRequired,
+  gamepadIndex: PropTypes.number.isRequired,
   type: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,

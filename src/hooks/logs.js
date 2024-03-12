@@ -17,13 +17,13 @@ function reducer(state = [], action = {}) {
 export default function useLogs() {
   const [logs, dispatch] = useReducer(reducer, []);
 
-  function add(midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, controllerIndex, buttonType, buttonIndex) {
+  function add(midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, gamepadIndex, buttonType, buttonIndex) {
     dispatch({
       type: ADD,
       log: {
         id: Date.now(),
         data: {
-          midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, controllerIndex, buttonType, buttonIndex,
+          midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, gamepadIndex, buttonType, buttonIndex,
         },
       },
     });

@@ -14,9 +14,11 @@ export default function RuleForm({ add }) {
   const [midiMessageValue1, setMidiMessageValue1] = useState(127);
   const [midiMessageValue2, setMidiMessageValue2] = useState(127);
 
-  const [controllerIndex, setControllerIndex] = useState(0);
+  const [gamepadIndex, setGamepadIndex] = useState(0);
   const [buttonType, setButtonType] = useState(0);
   const [buttonIndex, setButtonIndex] = useState(0);
+
+  const midiValue2Disabled = midiMessageType === MIDI_TYPE_CC;
 
   const handleMidiMessageTypeChange = (event) => {
     setMidiMessageType(parseInt(event.target.value, 10));
@@ -34,8 +36,8 @@ export default function RuleForm({ add }) {
     setMidiMessageValue2(parseInt(event.target.value, 10));
   };
 
-  const handleControllerIndexChange = (event) => {
-    setControllerIndex(parseInt(event.target.value, 10));
+  const handleGamepadIndexChange = (event) => {
+    setGamepadIndex(parseInt(event.target.value, 10));
   };
 
   const handleButtonTypeChange = (event) => {
@@ -54,8 +56,8 @@ export default function RuleForm({ add }) {
       midiMessageType,
       midiMessageChannel,
       midiMessageValue1,
-      midiMessageValue2,
-      controllerIndex,
+      midiMessageValue2: midiValue2Disabled ? null : midiMessageValue2,
+      gamepadIndex,
       buttonType,
       buttonIndex,
     });
@@ -89,15 +91,15 @@ export default function RuleForm({ add }) {
           </FormGroup>
           <FormGroup>
             <FormLabel>MIDI Value 2</FormLabel>
-            <FormSelect value={midiMessageValue2} onChange={handleMidiMessageValue2Change}>
+            <FormSelect value={midiMessageValue2} onChange={handleMidiMessageValue2Change} disabled={midiValue2Disabled}>
               {[...Array(128).keys()].map((v) => <option key={v} value={v}>{v}</option>)}
             </FormSelect>
           </FormGroup>
         </div>
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
           <FormGroup>
-            <FormLabel>Controller Number</FormLabel>
-            <FormInput type="number" min={0} value={controllerIndex} step={1} onChange={handleControllerIndexChange} />
+            <FormLabel>Gamepad ID</FormLabel>
+            <FormInput type="number" min={0} value={gamepadIndex} step={1} onChange={handleGamepadIndexChange} />
           </FormGroup>
           <FormGroup>
             <FormLabel>Button or Axe</FormLabel>
@@ -107,7 +109,7 @@ export default function RuleForm({ add }) {
             </FormSelect>
           </FormGroup>
           <FormGroup>
-            <FormLabel>Button/Axe Number</FormLabel>
+            <FormLabel>Button/Axe ID</FormLabel>
             <FormInput type="number" min={0} value={buttonIndex} step={1} onChange={handleButtonIndexChange} />
           </FormGroup>
         </div>

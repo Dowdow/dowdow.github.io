@@ -100,16 +100,16 @@ export default function useMidi(rules, addLog) {
     // Add error message
   }
 
-  function send(controllerIndexParam, buttonTypeParam, buttonIndexParam, buttonValueParam) {
+  function send(gamepadIndexParam, buttonTypeParam, buttonIndexParam, buttonValueParam) {
     const activatedMIDIOutputs = midiOutputs.filter((mo) => mo.activated === true);
 
     if (activatedMIDIOutputs.length === 0) return;
 
     rules.forEach((rule) => {
-      const { activated, midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, controllerIndex, buttonType, buttonIndex } = rule;
+      const { activated, midiMessageType, midiMessageChannel, midiMessageValue1, midiMessageValue2, gamepadIndex, buttonType, buttonIndex } = rule;
 
       if (!activated) return;
-      if (controllerIndex !== controllerIndexParam) return;
+      if (gamepadIndex !== gamepadIndexParam) return;
       if (buttonType !== buttonTypeParam || buttonIndex !== buttonIndexParam) return;
 
       if (
@@ -117,16 +117,16 @@ export default function useMidi(rules, addLog) {
         || (midiMessageType === MIDI_TYPE_NOTE_OFF && buttonValueParam === 0)
       ) {
         sendMidiNoteOnMessage(activatedMIDIOutputs, midiMessageChannel, midiMessageValue1, midiMessageValue2);
-        addLog(MIDI_TYPE_NOTE_ON, midiMessageChannel, midiMessageValue1, midiMessageValue2, controllerIndex, buttonType, buttonIndex);
+        addLog(MIDI_TYPE_NOTE_ON, midiMessageChannel, midiMessageValue1, midiMessageValue2, gamepadIndex, buttonType, buttonIndex);
       } else if (
         (midiMessageType === MIDI_TYPE_NOTE_ON && buttonValueParam === 0)
         || (midiMessageType === MIDI_TYPE_NOTE_OFF && buttonValueParam === 1)
       ) {
         sendMidiNoteOffMessage(activatedMIDIOutputs, midiMessageChannel, midiMessageValue1, midiMessageValue2);
-        addLog(MIDI_TYPE_NOTE_OFF, midiMessageChannel, midiMessageValue1, midiMessageValue2, controllerIndex, buttonType, buttonIndex);
+        addLog(MIDI_TYPE_NOTE_OFF, midiMessageChannel, midiMessageValue1, midiMessageValue2, gamepadIndex, buttonType, buttonIndex);
       } else if (midiMessageType === MIDI_TYPE_CC) {
         sendMidiCCMessage(activatedMIDIOutputs, midiMessageChannel, midiMessageValue1, Math.round(buttonValueParam * 127));
-        addLog(MIDI_TYPE_CC, midiMessageChannel, midiMessageValue1, Math.round(buttonValueParam * 127), controllerIndex, buttonType, buttonIndex);
+        addLog(MIDI_TYPE_CC, midiMessageChannel, midiMessageValue1, Math.round(buttonValueParam * 127), gamepadIndex, buttonType, buttonIndex);
       }
     });
   }

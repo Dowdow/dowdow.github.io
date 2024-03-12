@@ -14,8 +14,8 @@ export default function Rules({ rules, remove, toggle }) {
         <table className="w-full text-sm">
           <thead className="text-prim/60">
             <tr className="*:h-12 *:px-4">
-              <th>G</th>
-              <th>B/A</th>
+              <th>G ID</th>
+              <th>B/A ID</th>
               <th>Type</th>
               <th>Chan</th>
               <th>Val 1</th>
@@ -31,7 +31,7 @@ export default function Rules({ rules, remove, toggle }) {
                 <tr key={r.id} className="*:h-12 *:px-4 *:align-middle hover:bg-prim/5 border-t border-prim/10">
                   <td>
                     G
-                    <span className="font-bold">{r.controllerIndex}</span>
+                    <span className="font-bold">{r.gamepadIndex}</span>
                   </td>
                   <td>
                     {r.buttonType === 0 ? 'B' : 'Axe '}
@@ -43,12 +43,10 @@ export default function Rules({ rules, remove, toggle }) {
                     <span className="font-bold ml-1">{r.midiMessageChannel + 1}</span>
                   </td>
                   <td>
-                    V1
-                    <span className="font-bold ml-1">{r.midiMessageValue1}</span>
+                    {r.midiMessageValue1}
                   </td>
                   <td>
-                    V2
-                    <span className="font-bold ml-1">{r.midiMessageValue2}</span>
+                    {r.midiMessageValue2 ?? '%'}
                   </td>
                   <td>
                     <button type="button" onClick={() => remove(r.id)} className="opacity-80">

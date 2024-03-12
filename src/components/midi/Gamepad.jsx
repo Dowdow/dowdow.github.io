@@ -24,7 +24,7 @@ export default function Gamepad({ activated, data, toggle, send }) {
             key={`button-${data.index}-${i}`}
             type={0}
             activated={activated}
-            controllerIndex={data.index}
+            gamepadIndex={data.index}
             index={i}
             value={button.value}
             send={send}
@@ -37,7 +37,7 @@ export default function Gamepad({ activated, data, toggle, send }) {
             key={`axe-${data.index}-${i}`}
             type={1}
             activated={activated}
-            controllerIndex={data.index}
+            gamepadIndex={data.index}
             index={i}
             value={axe}
             send={send}
