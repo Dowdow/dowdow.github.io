@@ -3,12 +3,24 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   @font-face {
     font-family: 'Geist Sans';
     font-style: normal;
     font-weight: 400;
     src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2) format('woff2');
     src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf) format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Geist Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.woff2) format('woff2');
+    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.ttf) format('ttf');
   }
 
   @font-face {
