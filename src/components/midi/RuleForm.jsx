@@ -66,7 +66,7 @@ export default function RuleForm({ add }) {
       <h2 className="text-lg font-bold tracking-tight">New rule</h2>
       <div className="text-sm tracking-tight text-prim/50">Define a new binding rule.</div>
       <form onSubmit={handleSubmit} className="grid gap-3 pt-3">
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid md:grid-cols-3 xl:grid-cols-5 gap-3">
           <FormGroup className="col-span-2">
             <FormLabel>MIDI Message</FormLabel>
             <FormSelect value={midiMessageType} onChange={handleMidiMessageTypeChange}>
@@ -94,7 +94,7 @@ export default function RuleForm({ add }) {
             </FormSelect>
           </FormGroup>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
           <FormGroup>
             <FormLabel>Controller Number</FormLabel>
             <FormInput type="number" min={0} value={controllerIndex} step={1} onChange={handleControllerIndexChange} />

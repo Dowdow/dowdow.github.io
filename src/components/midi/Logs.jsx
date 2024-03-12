@@ -11,7 +11,7 @@ export default function Logs({ logs, clear }) {
   };
 
   return (
-    <Box className="h-full">
+    <Box>
       <div className="flex justify-between items-center gap-x-6">
         <div className="grow">
           <h2 className="text-lg font-bold tracking-tight">Logs</h2>
@@ -19,7 +19,7 @@ export default function Logs({ logs, clear }) {
         </div>
         <Button type="button" onClick={handleClearLogs}>Clear</Button>
       </div>
-      <div className="flex flex-col w-full h-52 mt-3 overflow-y-scroll">
+      <div className="flex flex-col w-full lg:h-[22rem] xl:h-48 mt-5 lg:overflow-y-scroll">
         {logs
           .sort((a, b) => b.id - a.id)
           .map((l, index) => <Log key={`${l.id}-${index}`} id={l.id} data={l.data} />)}

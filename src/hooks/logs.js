@@ -6,7 +6,7 @@ const CLEAR = 'CLEAR';
 function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADD:
-      return [...state.sort((a, b) => a.id - b.id).slice(-19), action.log];
+      return [...state.sort((a, b) => a.id - b.id).slice(-15), action.log];
     case CLEAR:
       return [];
     default:

@@ -10,7 +10,7 @@ export default function Rules({ rules, remove, toggle }) {
     <Box>
       <h2 className="text-lg font-bold tracking-tight">Rules</h2>
       <div className="text-sm tracking-tight text-prim/50 mb-6">Define rules to bind gamepad button to Midi messages.</div>
-      <div className="border border-prim/10 rounded">
+      <div className="border border-prim/10 rounded overflow-x-scroll">
         <table className="w-full text-sm">
           <thead className="text-prim/60">
             <tr className="*:h-12 *:px-4">

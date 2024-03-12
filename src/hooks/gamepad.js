@@ -51,6 +51,11 @@ export default function useGamepads() {
   }
 
   useEffect(() => {
+    navigator.getGamepads().forEach((g) => {
+      if (g === null) return;
+      add({ id: g.id, index: g.index, activated: true });
+    });
+
     window.addEventListener('gamepadconnected', gamepadConnected);
     window.addEventListener('gamepaddisconnected', gamepadDisconnected);
 
