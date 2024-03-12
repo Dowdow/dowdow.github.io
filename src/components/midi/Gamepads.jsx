@@ -18,7 +18,7 @@ export default function Gamepads({ gamepads, toggle, send }) {
   if (gamepads.length === 0) {
     return (
       <div className="flex items-center p-6 text-xl font-bold tracking-tight animate-pulse">
-        Press a button or move a stick to enable the gamepad.
+        Press a button or move a stick to enable your gamepad.
       </div>
     );
   }

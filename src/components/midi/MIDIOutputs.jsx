@@ -4,6 +4,14 @@ import Box from '../ui/Box';
 import Switch from '../ui/Switch';
 
 export default function MIDIOutputs({ outputs, toggle }) {
+  if (outputs.length === 0) {
+    return (
+      <div className="flex items-center p-6 text-xl font-bold tracking-tight animate-pulse">
+        Connect a Midi device to continue.
+      </div>
+    );
+  }
+
   return (
     <>
       {outputs
