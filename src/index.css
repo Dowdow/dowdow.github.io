@@ -11,40 +11,45 @@
     font-family: 'Geist Sans';
     font-style: normal;
     font-weight: 400;
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2) format('woff2');
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf) format('ttf');
+    src:
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2) format('woff2'),
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf) format('truetype');
   }
 
   @font-face {
     font-family: 'Geist Sans';
     font-style: normal;
     font-weight: 500;
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.woff2) format('woff2');
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.ttf) format('ttf');
+    src:
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.woff2) format('woff2'),
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Medium.ttf) format('truetype');
   }
 
   @font-face {
     font-family: 'Geist Sans';
     font-style: normal;
     font-weight: 700;
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2) format('woff2');
-    src: url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf) format('ttf');
+    src:
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2) format('woff2'),
+      url(/node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf) format('truetype');
   }
 
   @font-face {
     font-family: 'Geist Mono';
     font-style: normal;
     font-weight: 400;
-    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2) format('woff2');
-    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.ttf) format('ttf');
+    src:
+      url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2) format('woff2'),
+      url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.ttf) format('truetype');
   }
 
   @font-face {
     font-family: 'Geist Mono';
     font-style: normal;
     font-weight: 700;
-    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.woff2) format('woff2');
-    src: url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf) format('ttf');
+    src:
+      url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.woff2) format('woff2'),
+      url(/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf) format('truetype');
   }
 
   html,

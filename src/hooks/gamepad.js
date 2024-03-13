@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 const ADD = 'add';
 const REMOVE = 'remove';
@@ -27,6 +27,7 @@ function reducer(state = [], action = {}) {
 
 export default function useGamepads() {
   const [gamepads, dispatch] = useReducer(reducer, []);
+  const [support, setSupport] = useState(null);
 
   function add(gamepad) {
     dispatch({ type: ADD, gamepad });
@@ -51,10 +52,15 @@ export default function useGamepads() {
   }
 
   useEffect(() => {
-    navigator.getGamepads().forEach((g) => {
-      if (g === null) return;
-      add({ id: g.id, index: g.index, activated: true });
-    });
+    const gamepadSupport = typeof navigator.getGamepads !== 'undefined';
+    setSupport(gamepadSupport);
+
+    if (gamepadSupport) {
+      navigator.getGamepads().forEach((g) => {
+        if (g === null) return;
+        add({ id: g.id, index: g.index, activated: true });
+      });
+    }
 
     window.addEventListener('gamepadconnected', gamepadConnected);
     window.addEventListener('gamepaddisconnected', gamepadDisconnected);
@@ -65,5 +71,5 @@ export default function useGamepads() {
     };
   }, []);
 
-  return [gamepads, toggle];
+  return [gamepads, support, toggle];
 }

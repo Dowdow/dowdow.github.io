@@ -12,8 +12,8 @@ import Logs from './midi/Logs';
 export default function Midi() {
   const [rules, addRule, removeRule, toggleRule] = useRules();
   const [logs, addLog, clearLogs] = useLogs();
-  const [gamepads, toggleGamepad] = useGamepads();
-  const [midiOutputs, toggleMidi, send] = useMidi(rules, addLog);
+  const [gamepads, supportGamepad, toggleGamepad] = useGamepads();
+  const [midiOutputs, supportMidi, errorMessageMidi, toggleMidi, send] = useMidi(rules, addLog);
 
   return (
     <section>
@@ -34,10 +34,10 @@ export default function Midi() {
           <Rules rules={rules} add={addRule} remove={removeRule} toggle={toggleRule} />
         </div>
         <div className="grid md:col-span-2 lg:col-span-1 xl:col-span-4 gap-6">
-          <Gamepads gamepads={gamepads} toggle={toggleGamepad} send={send} />
+          <Gamepads gamepads={gamepads} support={supportGamepad} toggle={toggleGamepad} send={send} />
         </div>
         <div className="grid xl:col-span-3 gap-6">
-          <MIDIOutputs outputs={midiOutputs} toggle={toggleMidi} />
+          <MIDIOutputs outputs={midiOutputs} support={supportMidi} errorMessage={errorMessageMidi} toggle={toggleMidi} />
         </div>
       </div>
     </section>

@@ -3,7 +3,31 @@ import PropTypes from 'prop-types';
 import Box from '../ui/Box';
 import Switch from '../ui/Switch';
 
-export default function MIDIOutputs({ outputs, toggle }) {
+export default function MIDIOutputs({ outputs, support = null, errorMessage = null, toggle }) {
+  if (support === null) {
+    return (
+      <Box>
+        <span>Checking Midi API support...</span>
+      </Box>
+    );
+  }
+
+  if (support === false) {
+    return (
+      <Box className="bg-red-600/10">
+        <span>The Midi API is not supported on your browser.</span>
+      </Box>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <Box className="bg-red-600/10">
+        <span>{errorMessage}</span>
+      </Box>
+    );
+  }
+
   if (outputs.length === 0) {
     return (
       <div className="flex items-center p-6 text-xl font-bold tracking-tight animate-pulse">
@@ -46,7 +70,14 @@ function MIDIOutput({ id, activated, manufacturer, name, version, toggle }) {
 
 MIDIOutputs.propTypes = {
   outputs: PropTypes.array.isRequired,
+  support: PropTypes.bool,
+  errorMessage: PropTypes.string,
   toggle: PropTypes.func.isRequired,
+};
+
+MIDIOutputs.defaultProps = {
+  support: null,
+  errorMessage: null,
 };
 
 MIDIOutput.propTypes = {
