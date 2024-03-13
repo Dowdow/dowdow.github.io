@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '../ui/Box';
 import Button from '../ui/Button';
-import { midiTypeNameFromId } from '../../utils/midi';
 
 export default function Logs({ logs, clear }) {
   const handleClearLogs = (event) => {
@@ -22,6 +21,7 @@ export default function Logs({ logs, clear }) {
       <div className="flex flex-col w-full lg:h-[22rem] xl:h-48 mt-5 lg:overflow-y-scroll">
         {logs
           .sort((a, b) => b.id - a.id)
+          // eslint-disable-next-line react/no-array-index-key
           .map((l, index) => <Log key={`${l.id}-${index}`} id={l.id} data={l.data} />)}
       </div>
     </Box>
@@ -32,13 +32,10 @@ function Log({ id, data }) {
   const date = new Date(id);
   return (
     <div className="flex flex-row justify-between pr-3">
-      <span className="w-28 text-blue-600">{`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}:${date.getMilliseconds().toString().padStart(3, '0')}`}</span>
-      <span className="w-8">{`G${data.gamepadIndex}`}</span>
-      <span className="w-8">{`${data.buttonType === 0 ? 'B' : 'A'}${data.buttonIndex}`}</span>
-      <span className="w-20 uppercase">{midiTypeNameFromId(data.midiMessageType)}</span>
-      <span className="w-9">{`CH${data.midiMessageChannel}`}</span>
-      <span className="w-8 text-center">{data.midiMessageValue1}</span>
-      <span className="w-8 text-center">{data.midiMessageValue2}</span>
+      <span className=" w-24 text-blue-600">{`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}:${date.getMilliseconds().toString().padStart(3, '0')}`}</span>
+      {// eslint-disable-next-line react/no-array-index-key
+      data.map((d, i) => <span key={i}>{d}</span>)
+      }
     </div>
   );
 }
@@ -50,5 +47,5 @@ Logs.propTypes = {
 
 Log.propTypes = {
   id: PropTypes.number.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 };

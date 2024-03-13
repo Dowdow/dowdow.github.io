@@ -27,6 +27,8 @@ function reducer(state = [], action = {}) {
 
 export default function useGamepads() {
   const [gamepads, dispatch] = useReducer(reducer, []);
+  const [gamepadsData, setGamepadsData] = useState([]);
+  const [previousGamepadsData, setPreviousGamepadsData] = useState([]);
   const [support, setSupport] = useState(null);
 
   function add(gamepad) {
@@ -71,5 +73,47 @@ export default function useGamepads() {
     };
   }, []);
 
-  return [gamepads, support, toggle];
+  useEffect(() => {
+    let interval = null;
+    if (support) interval = setInterval(() => setGamepadsData(navigator.getGamepads()), 10);
+    return () => clearInterval(interval);
+  }, [support, gamepads]);
+
+  useEffect(() => {
+    setPreviousGamepadsData(gamepadsData);
+
+    if (previousGamepadsData.length === 0) return;
+
+    gamepads
+      .filter((g) => g.activated)
+      .forEach((g) => {
+        if (previousGamepadsData[g.index] === null) return;
+
+        gamepadsData[g.index].axes.forEach((a, i) => {
+          if (previousGamepadsData[g.index].axes[i] !== a) {
+            window.dispatchEvent(new CustomEvent('axe-value-changed', {
+              detail: {
+                gamepadIndex: g.index,
+                axeIndex: i,
+                value: (Math.min(Math.max(a, -1), 1) + 1) / 2,
+              },
+            }));
+          }
+        });
+
+        gamepadsData[g.index].buttons.forEach((b, i) => {
+          if (previousGamepadsData[g.index].buttons[i].value !== b.value) {
+            window.dispatchEvent(new CustomEvent('button-value-changed', {
+              detail: {
+                gamepadIndex: g.index,
+                buttonIndex: i,
+                value: Math.min(Math.max(b.value, 0), 1),
+              },
+            }));
+          }
+        });
+      });
+  }, [gamepads, gamepadsData]);
+
+  return [gamepads, gamepadsData, support, toggle];
 }

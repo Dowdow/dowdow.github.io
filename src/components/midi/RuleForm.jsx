@@ -37,6 +37,7 @@ export default function RuleForm({ add }) {
   };
 
   const handleGamepadIndexChange = (event) => {
+    if (event.target.value === '') return;
     setGamepadIndex(parseInt(event.target.value, 10));
   };
 
@@ -45,6 +46,7 @@ export default function RuleForm({ add }) {
   };
 
   const handleButtonIndexChange = (event) => {
+    if (event.target.value === '') return;
     setButtonIndex(parseInt(event.target.value, 10));
   };
 
