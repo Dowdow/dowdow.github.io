@@ -31,7 +31,7 @@ export default function Gamepads({ gamepads, gamepadsData, support = null, toggl
   return gamepads
     .sort((a, b) => a.index - b.index)
     .map((g) => {
-      if (gamepadsData[g.index] === null) return null;
+      if (!gamepadsData[g.index]) return null;
       return (
         <Box key={g.index}>
           <div className="flex justify-between items-center gap-x-6">
