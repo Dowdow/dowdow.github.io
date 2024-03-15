@@ -1,11 +1,13 @@
-import React from 'react';
-import { HASH_MIDI } from '../hooks/location';
-import Midi from './Midi';
-import Home from './Home';
+import React, { Suspense, lazy } from 'react';
 import Link from './routes/Link';
 import Route from './routes/Route';
 import Routes from './routes/Routes';
+import Loading from './ui/Loading';
+import { HASH_MIDI } from '../hooks/location';
 import github from '../assets/github-mark-white.svg';
+
+const Home = lazy(() => import('./Home'));
+const Midi = lazy(() => import('./Midi'));
 
 export default function App() {
   return (
@@ -27,10 +29,12 @@ export default function App() {
       </header>
       <main className="px-4">
         <div className="container mx-auto">
-          <Routes>
-            <Route to={HASH_MIDI} element={<Midi />} />
-            <Route element={<Home />} />
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route to={HASH_MIDI} element={<Midi />} />
+              <Route element={<Home />} />
+            </Routes>
+          </Suspense>
         </div>
       </main>
     </>
