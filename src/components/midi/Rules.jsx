@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '../ui/Box';
 import Switch from '../ui/Switch';
-import { midiTypeNameFromId } from '../../utils/midi';
+import { midiTypeNameFromId } from '../../hooks/midi';
 import trash from '../../assets/trash.svg';
 
 export default function Rules({ rules, remove, toggle }) {

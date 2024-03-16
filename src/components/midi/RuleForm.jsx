@@ -6,7 +6,7 @@ import FormGroup from '../ui/FormGroup';
 import FormLabel from '../ui/FormLabel';
 import FormSelect from '../ui/FormSelect';
 import FormInput from '../ui/FormInput';
-import { MIDI_TYPE_CC, MIDI_TYPE_NOTE_OFF, MIDI_TYPE_NOTE_ON } from '../../utils/midi';
+import { MIDI_TYPE_CC, MIDI_TYPE_NOTE_OFF, MIDI_TYPE_NOTE_ON } from '../../hooks/midi';
 
 export default function RuleForm({ add }) {
   const [midiMessageType, setMidiMessageType] = useState(MIDI_TYPE_NOTE_ON);

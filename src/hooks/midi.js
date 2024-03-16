@@ -1,6 +1,9 @@
 import { useEffect, useReducer, useState } from 'react';
 import usePrevious from './usePrevious';
-import { MIDI_TYPE_CC, MIDI_TYPE_NOTE_OFF, MIDI_TYPE_NOTE_ON } from '../utils/midi';
+
+export const MIDI_TYPE_NOTE_ON = 0;
+export const MIDI_TYPE_NOTE_OFF = 1;
+export const MIDI_TYPE_CC = 2;
 
 const ADD = 'add';
 const REMOVE = 'remove';
@@ -156,4 +159,17 @@ export default function useMidi(rules, addLog) {
   }, [midiOutputs, rules]);
 
   return [midiOutputs, support, permissionState, requestMidiAccess, toggle];
+}
+
+export function midiTypeNameFromId(midiType) {
+  switch (midiType) {
+    case MIDI_TYPE_NOTE_ON:
+      return 'Note On';
+    case MIDI_TYPE_NOTE_OFF:
+      return 'Note Off';
+    case MIDI_TYPE_CC:
+      return 'CC';
+    default:
+      return 'Unknown';
+  }
 }

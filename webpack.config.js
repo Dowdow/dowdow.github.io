@@ -1,8 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.jsx'),
+  entry: {
+    index: path.resolve(__dirname, './src/index.jsx'),
+    'service-worker': path.resolve(__dirname, './src/service-worker.js'),
+  },
   module: {
     rules: [
       {
@@ -25,7 +29,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'index.js',
+    filename: '[name].js',
     clean: true,
   },
   devServer: {
@@ -37,6 +41,7 @@ module.exports = {
       filename: 'index.html',
       template: 'src/index.html',
     }),
+    new WebpackAssetsManifest(),
   ],
   devtool: 'eval-source-map',
 };
