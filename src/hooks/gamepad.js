@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 
 const ADD = 'add';
 const REMOVE = 'remove';
@@ -31,30 +31,20 @@ export default function useGamepads() {
   const [previousGamepadsData, setPreviousGamepadsData] = useState([]);
   const [support, setSupport] = useState(null);
 
-  function add(gamepad) {
+  const add = useCallback((gamepad) => {
     dispatch({ type: ADD, gamepad });
-  }
+  }, [dispatch]);
 
-  function remove(index) {
+  const remove = useCallback((index) => {
     dispatch({ type: REMOVE, index });
-  }
+  }, [dispatch]);
 
-  function toggle(index) {
+  const toggle = useCallback((index) => {
     dispatch({ type: TOGGLE, index });
-  }
-
-  function gamepadConnected(event) {
-    const { gamepad } = event;
-    add({ id: gamepad.id, index: gamepad.index, activated: true });
-  }
-
-  function gamepadDisconnected(event) {
-    const { gamepad } = event;
-    remove(gamepad.index);
-  }
+  }, [dispatch]);
 
   useEffect(() => {
-    const gamepadSupport = typeof navigator.getGamepads !== 'undefined';
+    const gamepadSupport = 'getGamepads' in navigator;
     setSupport(gamepadSupport);
 
     if (gamepadSupport) {
@@ -62,6 +52,16 @@ export default function useGamepads() {
         if (g === null) return;
         add({ id: g.id, index: g.index, activated: true });
       });
+    }
+
+    function gamepadConnected(event) {
+      const { gamepad } = event;
+      add({ id: gamepad.id, index: gamepad.index, activated: true });
+    }
+
+    function gamepadDisconnected(event) {
+      const { gamepad } = event;
+      remove(gamepad.index);
     }
 
     window.addEventListener('gamepadconnected', gamepadConnected);
@@ -77,7 +77,7 @@ export default function useGamepads() {
     let interval = null;
     if (support) interval = setInterval(() => setGamepadsData(navigator.getGamepads()), 10);
     return () => clearInterval(interval);
-  }, [support, gamepads]);
+  }, [support]);
 
   useEffect(() => {
     setPreviousGamepadsData(gamepadsData);

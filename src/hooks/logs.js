@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 
 const ADD = 'ADD';
 const CLEAR = 'CLEAR';
@@ -17,13 +17,13 @@ function reducer(state = [], action = {}) {
 export default function useLogs() {
   const [logs, dispatch] = useReducer(reducer, []);
 
-  function add(data) {
+  const add = useCallback((data) => {
     dispatch({ type: ADD, log: { id: Date.now(), data } });
-  }
+  }, [dispatch]);
 
-  function clear() {
+  const clear = useCallback(() => {
     dispatch({ type: CLEAR });
-  }
+  }, [dispatch]);
 
   return [logs, add, clear];
 }

@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 
 const ADD = 'add';
 const REMOVE = 'remove';
@@ -37,17 +37,17 @@ function init(arg) {
 export default function useRules() {
   const [rules, dispatch] = useReducer(reducer, [], init);
 
-  function add(rule) {
+  const add = useCallback((rule) => {
     dispatch({ type: ADD, rule });
-  }
+  }, [dispatch]);
 
-  function remove(id) {
+  const remove = useCallback((id) => {
     dispatch({ type: REMOVE, id });
-  }
+  }, [dispatch]);
 
-  function toggle(id) {
+  const toggle = useCallback((id) => {
     dispatch({ type: TOGGLE, id });
-  }
+  }, [dispatch]);
 
   useEffect(() => {
     localStorage.setItem('rules', JSON.stringify(rules));

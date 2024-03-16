@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 import usePrevious from './usePrevious';
 
 export const MIDI_TYPE_NOTE_ON = 0;
@@ -40,83 +40,30 @@ export default function useMidi(rules, addLog) {
   const [permissionState, setPermissionState] = useState(null);
   const previousPermissionState = usePrevious(permissionState);
 
-  function add(midiPort) {
-    const { id, manufacturer, name, version } = midiPort;
+  const add = useCallback(({ id, manufacturer, name, version }) => {
     dispatch({ type: ADD, midiOutput: { id, manufacturer, name, version, activated: false } });
-  }
+  }, [dispatch]);
 
-  function remove(id) {
+  const remove = useCallback((id) => {
     dispatch({ type: REMOVE, id });
-  }
+  }, [dispatch]);
 
-  function toggle(id) {
+  const toggle = useCallback((id) => {
     dispatch({ type: TOGGLE, id });
-  }
+  }, [dispatch]);
 
-  function sendMidiMessage(byte1, byte2, byte3) {
-    midiOutputs
-      .filter((mo) => mo.activated)
-      .forEach((mo) => {
-        const o = midiAccess.outputs.get(mo.id);
-        o.send([byte1, byte2, byte3]);
-        addLog([o.name.substring(0, 20), byte1, byte2, byte3]);
-      });
-  }
-
-  function sendMidiNoteOnMessage(channel, value1, value2) {
-    sendMidiMessage(144 + channel, value1, value2);
-  }
-
-  function sendMidiNoteOffMessage(channel, value1, value2) {
-    sendMidiMessage(128 + channel, value1, value2);
-  }
-
-  function sendMidiCCMessage(channel, value1, value2) {
-    sendMidiMessage(176 + channel, value1, value2);
-  }
-
-  function onAxeValueChanged(event) {
-    const { gamepadIndex, axeIndex, value } = event.detail;
-    rules
-      .filter((r) => r.activated && r.gamepadIndex === gamepadIndex && r.buttonType === 1 && r.buttonIndex === axeIndex)
-      .forEach((r) => {
-        if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 1) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 0)) {
-          sendMidiNoteOnMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
-        } else if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 0) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 1)) {
-          sendMidiNoteOffMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
-        } else if (r.midiMessageType === MIDI_TYPE_CC) {
-          sendMidiCCMessage(r.midiMessageChannel, r.midiMessageValue1, Math.round(value * 127));
+  const requestMidiAccess = useCallback(async () => {
+    function onMidiAccessStateChange(event) {
+      const { port } = event;
+      if (port.type === 'output') {
+        if (port.state === 'connected') {
+          add(port);
+        } else {
+          remove(port.id);
         }
-      });
-  }
-
-  function onButtonValueChanged(event) {
-    const { gamepadIndex, buttonIndex, value } = event.detail;
-    rules
-      .filter((r) => r.activated && r.gamepadIndex === gamepadIndex && r.buttonType === 0 && r.buttonIndex === buttonIndex)
-      .forEach((r) => {
-        if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 1) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 0)) {
-          sendMidiNoteOnMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
-        } else if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 0) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 1)) {
-          sendMidiNoteOffMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
-        } else if (r.midiMessageType === MIDI_TYPE_CC) {
-          sendMidiCCMessage(r.midiMessageChannel, r.midiMessageValue1, Math.round(value * 127));
-        }
-      });
-  }
-
-  function onMidiAccessStateChange(event) {
-    const { port } = event;
-    if (port.type === 'output') {
-      if (port.state === 'connected') {
-        add(port);
-      } else {
-        remove(port.id);
       }
     }
-  }
 
-  async function requestMidiAccess() {
     try {
       const mA = await navigator.requestMIDIAccess();
       mA.addEventListener('statechange', onMidiAccessStateChange);
@@ -126,20 +73,20 @@ export default function useMidi(rules, addLog) {
     } catch (e) {
       setPermissionState('denied');
     }
-  }
-
-  async function setupPermissions() {
-    try {
-      const permissionStatus = await navigator.permissions.query({ name: 'midi' });
-      permissionStatus.addEventListener('change', (event) => setPermissionState(event.target.state));
-      setPermissionState(permissionStatus.state);
-    } catch (e) {
-      setPermissionState('denied');
-    }
-  }
+  }, [add, remove, setMidiAccess, setPermissionState]);
 
   useEffect(() => {
-    setSupport(typeof navigator.requestMIDIAccess !== 'undefined');
+    async function setupPermissions() {
+      try {
+        const permissionStatus = await navigator.permissions.query({ name: 'midi' });
+        permissionStatus.addEventListener('change', (event) => setPermissionState(event.target.state));
+        setPermissionState(permissionStatus.state);
+      } catch (e) {
+        setPermissionState('denied');
+      }
+    }
+
+    setSupport('requestMIDIAccess' in navigator);
     setupPermissions();
   }, []);
 
@@ -150,6 +97,58 @@ export default function useMidi(rules, addLog) {
   }, [permissionState]);
 
   useEffect(() => {
+    function sendMidiMessage(byte1, byte2, byte3) {
+      midiOutputs
+        .filter((mo) => mo.activated)
+        .forEach((mo) => {
+          const o = midiAccess.outputs.get(mo.id);
+          o.send([byte1, byte2, byte3]);
+          addLog([o.name.substring(0, 20), byte1, byte2, byte3]);
+        });
+    }
+
+    function sendMidiNoteOnMessage(channel, value1, value2) {
+      sendMidiMessage(144 + channel, value1, value2);
+    }
+
+    function sendMidiNoteOffMessage(channel, value1, value2) {
+      sendMidiMessage(128 + channel, value1, value2);
+    }
+
+    function sendMidiCCMessage(channel, value1, value2) {
+      sendMidiMessage(176 + channel, value1, value2);
+    }
+
+    function onAxeValueChanged(event) {
+      const { gamepadIndex, axeIndex, value } = event.detail;
+      rules
+        .filter((r) => r.activated && r.gamepadIndex === gamepadIndex && r.buttonType === 1 && r.buttonIndex === axeIndex)
+        .forEach((r) => {
+          if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 1) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 0)) {
+            sendMidiNoteOnMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
+          } else if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 0) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 1)) {
+            sendMidiNoteOffMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
+          } else if (r.midiMessageType === MIDI_TYPE_CC) {
+            sendMidiCCMessage(r.midiMessageChannel, r.midiMessageValue1, Math.round(value * 127));
+          }
+        });
+    }
+
+    function onButtonValueChanged(event) {
+      const { gamepadIndex, buttonIndex, value } = event.detail;
+      rules
+        .filter((r) => r.activated && r.gamepadIndex === gamepadIndex && r.buttonType === 0 && r.buttonIndex === buttonIndex)
+        .forEach((r) => {
+          if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 1) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 0)) {
+            sendMidiNoteOnMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
+          } else if ((r.midiMessageType === MIDI_TYPE_NOTE_ON && value === 0) || (r.midiMessageType === MIDI_TYPE_NOTE_OFF && value === 1)) {
+            sendMidiNoteOffMessage(r.midiMessageChannel, r.midiMessageValue1, r.midiMessageValue2);
+          } else if (r.midiMessageType === MIDI_TYPE_CC) {
+            sendMidiCCMessage(r.midiMessageChannel, r.midiMessageValue1, Math.round(value * 127));
+          }
+        });
+    }
+
     window.addEventListener('axe-value-changed', onAxeValueChanged);
     window.addEventListener('button-value-changed', onButtonValueChanged);
     return () => {
