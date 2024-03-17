@@ -4,7 +4,7 @@ import Route from './routes/Route';
 import Routes from './routes/Routes';
 import Loading from './ui/Loading';
 import ServiceWorkerButton from './ui/ServiceWorkerButton';
-import useServiceWorker from '../hooks/useServiceWorker';
+import useServiceWorker from '../hooks/serviceWorker';
 import { HASH_MIDI } from '../hooks/location';
 import github from '../assets/github-mark-white.svg';
 

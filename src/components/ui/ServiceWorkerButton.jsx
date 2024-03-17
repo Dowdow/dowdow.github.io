@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useNetwork from '../../hooks/network';
 
 export default function ServiceWorkerButton({ supported = null, state = null, error = false, register, unregister }) {
+  const isOnline = useNetwork();
+
   const onClick = () => {
     if (state === null || state === 'redundant') {
       register();
@@ -19,7 +22,11 @@ export default function ServiceWorkerButton({ supported = null, state = null, er
       type="button"
       onClick={onClick}
       data-error={error ? 'true' : 'false'}
-      className="flex items-center gap-2 px-3.5 md:px-2 font-mono text-sm bg-transparent data-[error=true]:bg-red-600/10 hover:bg-prim/15 text-prim/70 rounded-md"
+      disabled={!isOnline}
+      className="flex items-center gap-2 px-3.5 md:px-2 rounded-md
+      font-mono text-sm text-prim/70
+      bg-transparent data-[error=true]:bg-red-600/10 hover:bg-prim/15 disabled:hover:bg-transparent
+      disabled:cursor-not-allowed"
     >
       <div
         data-state={state ?? 'redundant'}

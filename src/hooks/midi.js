@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer, useState } from 'react';
-import usePrevious from './usePrevious';
+import usePrevious from './previous';
 
 export const MIDI_TYPE_NOTE_ON = 0;
 export const MIDI_TYPE_NOTE_OFF = 1;
