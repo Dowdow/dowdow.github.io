@@ -31,7 +31,7 @@ self.addEventListener('fetch', (event) => {
     })());
   } else {
     const url = new URL(event.request.url);
-    if (url.host === location.host && url.pathname.match(/\.(html|js|css|png|jpe?g|gif|svg|woff2|ttf)$/) !== null) {
+    if (url.host === location.host && url.pathname.match(/\.(html|js|css|png|jpe?g|gif|svg|woff2|ttf|md)$/) !== null) {
       event.respondWith((async () => {
         const cache = await caches.open(ASSET_CACHE);
         try {
