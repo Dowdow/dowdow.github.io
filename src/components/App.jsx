@@ -5,11 +5,12 @@ import Routes from './routes/Routes';
 import Loading from './ui/Loading';
 import ServiceWorkerButton from './ui/ServiceWorkerButton';
 import useServiceWorker from '../hooks/serviceWorker';
-import { HASH_MIDI } from '../hooks/location';
+import { HASH_MIDI, HASH_ROUTING } from '../hooks/location';
 import github from '../assets/github-mark-white.svg';
 
 const Home = lazy(() => import('./Home'));
 const Midi = lazy(() => import('./Midi'));
+const Routing = lazy(() => import('./Routing'));
 
 export default function App() {
   const [supported, state, error, register, unregister] = useServiceWorker();
@@ -25,6 +26,7 @@ export default function App() {
           <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 hover:*:text-prim/80">
             <Link to="/" className="text-base">Home</Link>
             <Link to={HASH_MIDI} className="text-base">Midi</Link>
+            <Link to={HASH_ROUTING} className="text-base">Routing</Link>
           </nav>
           <div className="flex gap-1 md:gap-3">
             <ServiceWorkerButton supported={supported} state={state} error={error} register={register} unregister={unregister} />
@@ -38,6 +40,7 @@ export default function App() {
         <div className="container mx-auto">
           <Suspense fallback={<Loading />}>
             <Routes>
+              <Route to={HASH_ROUTING} element={<Routing />} />
               <Route to={HASH_MIDI} element={<Midi />} />
               <Route element={<Home />} />
             </Routes>
