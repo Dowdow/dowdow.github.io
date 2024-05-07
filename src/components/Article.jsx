@@ -35,14 +35,16 @@ export default function Article() {
           p({ children }) {
             return <p className="my-6 text-lg md:text-xl">{children}</p>;
           },
+          a({ href, children }) {
+            return <a href={href} target="_blank" rel="noreferrer" className="text-blue-400">{children}</a>;
+          },
           pre({ children }) {
             return children;
           },
-          code({ children, className, ...rest }) {
+          code({ className, children }) {
             const match = /language-(\w+)/.exec(className || '');
             return match ? (
               <Prism
-                {...rest}
                 language={match[1]}
                 style={vscDarkPlus}
                 customStyle={{ fontSize: '16px' }}
@@ -51,7 +53,7 @@ export default function Article() {
                 {String(children).replace(/\n$/, '')}
               </Prism>
             ) : (
-              <code {...rest} className="px-0.5 bg-white/20 rounded">
+              <code className="px-0.5 bg-white/20 rounded">
                 {children}
               </code>
             );
