@@ -1,15 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { RoutesContext } from './Routes';
+import { match } from '../../hooks/routing';
 
 export default function Route({ to = null, element }) {
-  const hash = useContext(RoutesContext);
+  const { hash, addMatch } = useContext(RoutesContext);
+  const [matched, setMatched] = useState(false);
 
-  if (hash === to || (hash === '' && to === null)) {
-    return element;
-  }
+  useEffect(() => {
+    const m = match(hash, to);
+    setMatched(m);
+    if (m) {
+      addMatch(to);
+    }
+  }, [hash]);
 
-  return null;
+  return matched ? element : null;
 }
 
 Route.propTypes = {

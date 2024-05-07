@@ -4,17 +4,15 @@ import Route from './routes/Route';
 import Routes from './routes/Routes';
 import Loading from './ui/Loading';
 import ServiceWorkerButton from './ui/ServiceWorkerButton';
-import useServiceWorker from '../hooks/serviceWorker';
-import { HASH_MIDI, HASH_ROUTING } from '../hooks/location';
+import { HASH_ARTICLE, HASH_BLOG, HASH_MIDI } from '../hooks/routing';
 import github from '../assets/github-mark-white.svg';
 
 const Home = lazy(() => import('./Home'));
 const Midi = lazy(() => import('./Midi'));
-const Routing = lazy(() => import('./Routing'));
+const Blog = lazy(() => import('./Blog'));
+const Article = lazy(() => import('./Article'));
 
 export default function App() {
-  const [supported, state, error, register, unregister] = useServiceWorker();
-
   return (
     <>
       <header className="flex items-center w-full h-14 px-4 border-b border-b-prim/5">
@@ -26,10 +24,10 @@ export default function App() {
           <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 hover:*:text-prim/80">
             <Link to="/" className="text-base">Home</Link>
             <Link to={HASH_MIDI} className="text-base">Midi</Link>
-            <Link to={HASH_ROUTING} className="text-base">Routing</Link>
+            <Link to={HASH_BLOG} className="text-base">Blog</Link>
           </nav>
           <div className="flex gap-1 md:gap-3">
-            <ServiceWorkerButton supported={supported} state={state} error={error} register={register} unregister={unregister} />
+            <ServiceWorkerButton />
             <a href="https://github.com/Dowdow" target="_blank" rel="noreferrer" className="p-2 hover:bg-prim/15 rounded-md">
               <img src={github} alt="Dowdow GitHub page" className="w-6" />
             </a>
@@ -40,7 +38,8 @@ export default function App() {
         <div className="container mx-auto">
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route to={HASH_ROUTING} element={<Routing />} />
+              <Route to={HASH_BLOG} element={<Blog />} />
+              <Route to={HASH_ARTICLE} element={<Article />} />
               <Route to={HASH_MIDI} element={<Midi />} />
               <Route element={<Home />} />
             </Routes>

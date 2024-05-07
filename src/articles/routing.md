@@ -1,14 +1,20 @@
 # Simple Routing system using hashes in React
 
-Occasionally, you might prefer not to rely on third-party dependencies, especially for simple tasks or during the proof-of-concept phase.
-However, implementing such functionalities can be complex, even for seemingly straightforward use cases.
+Sometimes, you might prefer not to rely on third-party dependencies, especially for simple tasks or during the proof-of-concept phase.
+However, implementing such functionalities can be complex, even for simple use cases.
 
-You may encounter numerous nuances to consider, such as `history management`, `back navigation`, and `default browser behaviors`, particularly when dealing with `routing`.
+In the case of client-side routing, you could rely on libraries like [`react-router`](https://reactrouter.com/) for example, or code your own.
+This seems simple at first glance, but you may encounter numerous nuances to consider, such as `history management`, `back navigation`, and `default browser behaviors`.
 
-Nevertheless, you can simplify the behavior — in our case, `routing` — by focusing solely on `hashes`.
-By doing so, you can create the simplest routing system, drawing inspiration from libraries like [`react-router`](https://reactrouter.com/).
+So why bother ?
 
-In this brief article, I'll guide you through the process of building a straightforward routing system in React using hashes.
+In the case of [`GitHub Pages`](https://pages.github.com/), you can't use standard routing, because adding `/route` to the url will search for a `route` file in your repository.
+This is not a problem when you use those pages with generated documentation, because the libraries take care of this behavior natively.
+
+But when dealing with a Single Page Application and not statically generated html, this can become an issue.
+A solution I find for this, is using the `hash` fragments of urls as a simple routing mecanism.
+
+In this brief article, I'll guide you through the process of building a straightforward routing system in React using hashes, inspirired by the syntax of `react-router`.
 
 This system is currently in use on this website.
 
@@ -38,14 +44,18 @@ We can attach an event listener to it to track if the user has changed the url d
 
 ## Routing code
 
-First, we'll create a hook to centralize the hash state in our application.
+First, we'll create a `Routes.jsx` component to centralize the hash state in our application.
 This involves initializing the state with the current hash values and updating it with the onhashchange event.
 
-```jsx
-// location.js
-import { useEffect, useState } from 'react';
+Serving as a wrapper for our upcoming `Route` components, it uses a React `context` to pass hash information across all `Route` elements. We use context here because sub `Route` may not be direct children of the Routes wrapper.
 
-export function useLocationHash() {
+```jsx
+// Routes.jsx
+import React, { useEffect, useState } from 'react';
+
+export const RoutesContext = React.createContext();
+
+export default function Routes({ children }) {
   const [hash, setHash] = useState(window.location.hash);
 
   useEffect(() => {
@@ -58,22 +68,6 @@ export function useLocationHash() {
       window.removeEventListener('hashchange', hashChange);
     };
   }, []);
-
-  return hash;
-}
-```
-
-This hook will be utilized in our initial component `Routes.jsx`. Serving as a wrapper for our upcoming `Route` components, it uses a React `context` to pass hash information across all `Route` elements.
-
-```jsx
-// Routes.jsx
-import React from 'react';
-import { useLocationHash } from './location';
-
-export const RoutesContext = React.createContext();
-
-export default function Routes({ children }) {
-  const hash = useLocationHash();
 
   return (
     <RoutesContext.Provider value={hash}>

@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import useNetwork from '../../hooks/network';
+import useServiceWorker from '../../hooks/serviceWorker';
 
-export default function ServiceWorkerButton({ supported = null, state = null, error = false, register, unregister }) {
+export default function ServiceWorkerButton() {
   const isOnline = useNetwork();
+  const [supported, state, error, register, unregister] = useServiceWorker();
 
   const onClick = () => {
     if (state === null || state === 'redundant') {
@@ -43,17 +44,3 @@ export default function ServiceWorkerButton({ supported = null, state = null, er
     </button>
   );
 }
-
-ServiceWorkerButton.propTypes = {
-  supported: PropTypes.bool,
-  state: PropTypes.string,
-  error: PropTypes.bool,
-  register: PropTypes.func.isRequired,
-  unregister: PropTypes.func.isRequired,
-};
-
-ServiceWorkerButton.defaultProps = {
-  supported: null,
-  state: null,
-  error: false,
-};
