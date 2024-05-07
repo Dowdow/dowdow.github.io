@@ -9,7 +9,7 @@ export default function Blog() {
 
   return (
     <section>
-      <div className="flex flex-col justify-center items-center gap-y-2 h-40">
+      <div className="flex flex-col justify-center items-center gap-y-2 h-40 text-center">
         <h1 className="text-6xl font-bold tracking-tighter">Blog</h1>
         <span className="text-lg text-prim/60">Sometimes I feel like writing some blog articles.</span>
       </div>
