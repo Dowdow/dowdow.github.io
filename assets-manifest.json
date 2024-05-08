@@ -1,8 +1,8 @@
 {
-  "24.js": "24.js",
   "272.js": "272.js",
   "442.js": "442.js",
-  "744.js": "744.js",
+  "554.js": "554.js",
+  "959.js": "959.js",
   "965.js": "965.js",
   "Geist-Bold.ttf": "bf417cd96eeeffb295e6.ttf",
   "Geist-Bold.woff2": "f05ae9735ee0220d9047.woff2",
@@ -17,7 +17,7 @@
   "github-mark-white.svg": "055a66036aa7ffc46c22a0c1aa7d07a9.svg",
   "index.html": "index.html",
   "index.js": "index.js",
-  "routing.md": "7e577280481c328ead3aaebfced710c2.md",
+  "routing.md": "08a950c460da5a35d0c46c8f96ff74b5.md",
   "service-worker.js": "service-worker.js",
   "trash.svg": "7329203163f2bfde2322e4f36f144001.svg"
 }
