@@ -14,7 +14,7 @@ This is not a problem when you use those pages with generated documentation, bec
 But when dealing with a Single Page Application and not statically generated html, this can become an issue.
 A solution I find for this, is using the `hash` fragments of urls as a simple routing mecanism.
 
-In this brief article, I'll guide you through the process of building a straightforward routing system in React using hashes, inspirired by the syntax of `react-router`.
+In this brief post, I'll guide you through the process of building a straightforward routing system in React using hashes, inspirired by the syntax of `react-router`.
 
 This system is currently in use on this website.
 

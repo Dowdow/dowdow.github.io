@@ -4,13 +4,13 @@ import Route from './routes/Route';
 import Routes from './routes/Routes';
 import Loading from './ui/Loading';
 import ServiceWorkerButton from './ui/ServiceWorkerButton';
-import { HASH_ARTICLE, HASH_BLOG, HASH_MIDI } from '../hooks/routing';
+import { HASH_MIDI, HASH_POST, HASH_POSTS } from '../hooks/routing';
 import github from '../assets/github-mark-white.svg';
 
 const Home = lazy(() => import('./Home'));
 const Midi = lazy(() => import('./Midi'));
-const Blog = lazy(() => import('./Blog'));
-const Article = lazy(() => import('./Article'));
+const Posts = lazy(() => import('./Posts'));
+const Post = lazy(() => import('./Post'));
 
 export default function App() {
   return (
@@ -24,7 +24,7 @@ export default function App() {
           <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 hover:*:text-prim/80">
             <Link to="/" className="text-base">Home</Link>
             <Link to={HASH_MIDI} className="text-base">Midi</Link>
-            <Link to={HASH_BLOG} className="text-base">Blog</Link>
+            <Link to={HASH_POSTS} className="text-base">Posts</Link>
           </nav>
           <div className="flex gap-1 md:gap-3">
             <ServiceWorkerButton />
@@ -38,8 +38,8 @@ export default function App() {
         <div className="container mx-auto">
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route to={HASH_BLOG} element={<Blog />} />
-              <Route to={HASH_ARTICLE} element={<Article />} />
+              <Route to={HASH_POSTS} element={<Posts />} />
+              <Route to={HASH_POST} element={<Post />} />
               <Route to={HASH_MIDI} element={<Midi />} />
               <Route element={<Home />} />
             </Routes>

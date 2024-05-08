@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { RoutesContext } from '../components/routes/Routes';
 
-export const HASH_BLOG = '#blog';
-export const HASH_ARTICLE = '#blog#{slug}';
+export const HASH_POSTS = '#posts';
+export const HASH_POST = '#posts#{slug}';
 export const HASH_MIDI = '#midi';
 
 export function generateRoute(route, params = {}) {
