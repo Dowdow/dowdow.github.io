@@ -13,7 +13,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist -b prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -28,7 +27,6 @@
     "@tailwindcss/postcss": "^4.1.8",
     "@tailwindcss/vite": "^4.1.8",
     "@vitejs/plugin-react": "^4.5.1",
-    "gh-pages": "^6.3",
     "tailwindcss": "^4.1.8",
     "vite": "^6.3.5"
   }
