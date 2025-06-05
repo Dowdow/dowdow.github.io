@@ -1,25 +1,32 @@
-import React from 'react';
-import Gamepads from './midi/Gamepads';
-import MidiOutputs from './midi/MidiOutputs';
-import useGamepads from '../hooks/gamepad';
-import useLogs from '../hooks/logs';
-import useMidi from '../hooks/midi';
-import useRules from '../hooks/rules';
-import Rules from './midi/Rules';
-import RuleForm from './midi/RuleForm';
-import Logs from './midi/Logs';
+import Gamepads from "./midi/Gamepads";
+import MidiOutputs from "./midi/MidiOutputs";
+import useGamepads from "../hooks/gamepad";
+import useLogs from "../hooks/logs";
+import useMidi from "../hooks/midi";
+import useRules from "../hooks/rules";
+import Rules from "./midi/Rules";
+import RuleForm from "./midi/RuleForm";
+import Logs from "./midi/Logs";
 
 export default function Midi() {
   const [rules, addRule, removeRule, ruleToggle] = useRules();
   const [logs, addLog, clearLogs] = useLogs();
   const [gamepads, gamepadsData, gamepadSupport, gamepadToggle] = useGamepads();
-  const [midiOutputs, midiSupport, midiPermissionState, requestMidiAccess, midiToggle] = useMidi(rules, addLog);
+  const [
+    midiOutputs,
+    midiSupport,
+    midiPermissionState,
+    requestMidiAccess,
+    midiToggle,
+  ] = useMidi(rules, addLog);
 
   return (
     <section>
       <div className="flex flex-col justify-center items-center gap-y-2 h-40 text-center">
         <h1 className="text-6xl font-bold tracking-tighter">Midi</h1>
-        <span className="text-lg text-prim/60">Send Midi signals with your gamepad.</span>
+        <span className="text-lg text-prim/60">
+          Send Midi signals with your gamepad.
+        </span>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-6">
         <div className="xl:col-span-3">

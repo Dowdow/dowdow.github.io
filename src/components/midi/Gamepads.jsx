@@ -1,9 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Box from '../ui/Box';
-import Switch from '../ui/Switch';
+import PropTypes from "prop-types";
+import Box from "../ui/Box";
+import Switch from "../ui/Switch";
 
-export default function Gamepads({ gamepads, gamepadsData, support = null, toggle }) {
+export default function Gamepads({
+  gamepads,
+  gamepadsData,
+  support = null,
+  toggle,
+}) {
   if (support === null) {
     return (
       <Box>
@@ -44,7 +48,11 @@ export default function Gamepads({ gamepads, gamepadsData, support = null, toggl
           <div className="flex flex-row flex-wrap gap-1 pt-3">
             {gamepadsData[g.index].buttons.map((button, i) => (
               // eslint-disable-next-line react/no-array-index-key
-              <GamepadButton key={`button-${g.index}-${i}`} index={i} value={button.value} />
+              <GamepadButton
+                key={`button-${g.index}-${i}`}
+                index={i}
+                value={button.value}
+              />
             ))}
           </div>
           <div className="flex flex-row flex-wrap gap-1 pt-3">
@@ -68,7 +76,9 @@ function GamepadButton({ index, value }) {
       </svg>
       <div className="flex flex-col">
         <span className="text-sm text-prim/70">{`B${index}`}</span>
-        <span className="">{(Math.round((value + Number.EPSILON) * 100) / 100).toFixed(2)}</span>
+        <span className="">
+          {(Math.round((value + Number.EPSILON) * 100) / 100).toFixed(2)}
+        </span>
       </div>
     </div>
   );
@@ -84,7 +94,9 @@ function GamepadAxe({ index, value }) {
       </svg>
       <div className="flex flex-col">
         <span className="text-sm text-prim/70">{`Axis ${index}`}</span>
-        <span className="">{(Math.round((value + Number.EPSILON) * 100) / 100).toFixed(2)}</span>
+        <span className="">
+          {(Math.round((value + Number.EPSILON) * 100) / 100).toFixed(2)}
+        </span>
       </div>
     </div>
   );

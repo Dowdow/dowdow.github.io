@@ -1,16 +1,16 @@
-import React, { Suspense, lazy } from 'react';
-import Link from './routes/Link';
-import Route from './routes/Route';
-import Routes from './routes/Routes';
-import Loading from './ui/Loading';
-import ServiceWorkerButton from './ui/ServiceWorkerButton';
-import { HASH_MIDI, HASH_POST, HASH_POSTS } from '../hooks/routing';
-import github from '../assets/github-mark-white.svg';
+import { Suspense, lazy } from "react";
+import Link from "./routes/Link";
+import Route from "./routes/Route";
+import Routes from "./routes/Routes";
+import Loading from "./ui/Loading";
+import ServiceWorkerButton from "./ui/ServiceWorkerButton";
+import { HASH_MIDI, HASH_POST, HASH_POSTS } from "../hooks/routing";
+import github from "../assets/github-mark-white.svg";
 
-const Home = lazy(() => import('./Home'));
-const Midi = lazy(() => import('./Midi'));
-const Posts = lazy(() => import('./Posts'));
-const Post = lazy(() => import('./Post'));
+const Home = lazy(() => import("./Home"));
+const Midi = lazy(() => import("./Midi"));
+const Posts = lazy(() => import("./Posts"));
+const Post = lazy(() => import("./Post"));
 
 export default function App() {
   return (
@@ -21,14 +21,25 @@ export default function App() {
             Léo Riera
             <span className="text-xs font-normal text-prim/60">Developer/</span>
           </Link>
-          <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 hover:*:text-prim/80">
-            <Link to="/" className="text-base">Home</Link>
-            <Link to={HASH_MIDI} className="text-base">Midi</Link>
-            <Link to={HASH_POSTS} className="text-base">Posts</Link>
+          <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 *:hover:text-prim/80">
+            <Link to="/" className="text-base">
+              Home
+            </Link>
+            <Link to={HASH_MIDI} className="text-base">
+              Midi
+            </Link>
+            <Link to={HASH_POSTS} className="text-base">
+              Posts
+            </Link>
           </nav>
           <div className="flex gap-1 md:gap-3">
             <ServiceWorkerButton />
-            <a href="https://github.com/Dowdow" target="_blank" rel="noreferrer" className="p-2 hover:bg-prim/15 rounded-md">
+            <a
+              href="https://github.com/Dowdow"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 hover:bg-prim/15 rounded-md"
+            >
               <img src={github} alt="Dowdow GitHub page" className="w-6" />
             </a>
           </div>

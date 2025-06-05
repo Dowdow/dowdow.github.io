@@ -1,11 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export default function Button({ type = 'button', className = '', children, onClick, disabled = false }) {
+export default function Button({
+  type = "button",
+  className = "",
+  children,
+  onClick,
+  disabled = false,
+}) {
   return (
     <button
       type={type}
-      className={`inline-flex items-center justify-center whitespace-nowrap shrink-0 rounded font-medium bg-prim/20 hover:bg-prim/15 disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 ${className}`}
+      className={`inline-flex items-center justify-center whitespace-nowrap shrink-0 rounded-sm font-medium bg-prim/20 hover:bg-prim/15 disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 ${className}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -23,8 +28,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: 'button',
-  className: '',
+  type: "button",
+  className: "",
   onClick: undefined,
   disabled: false,
 };

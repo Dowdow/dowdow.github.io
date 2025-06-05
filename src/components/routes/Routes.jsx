@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useReducer, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useMemo, useReducer, useState } from "react";
+import PropTypes from "prop-types";
 
 export const RoutesContext = React.createContext();
 
-const ADD = 'add';
-const RESET = 'reset';
+const ADD = "add";
+const RESET = "reset";
 
 function reducer(state = [], action = {}) {
   switch (action.type) {
@@ -27,9 +27,9 @@ export default function Routes({ children }) {
       dispatch({ type: RESET });
     }
 
-    window.addEventListener('hashchange', hashChange);
+    window.addEventListener("hashchange", hashChange);
     return () => {
-      window.removeEventListener('hashchange', hashChange);
+      window.removeEventListener("hashchange", hashChange);
     };
   }, []);
 
@@ -37,12 +37,13 @@ export default function Routes({ children }) {
     dispatch({ type: ADD, payload: match });
   };
 
-  const payload = useMemo(() => ({ hash, matches, addMatch }), [hash, matches, addMatch]);
+  const payload = useMemo(
+    () => ({ hash, matches, addMatch }),
+    [hash, matches, addMatch],
+  );
 
   return (
-    <RoutesContext.Provider value={payload}>
-      {children}
-    </RoutesContext.Provider>
+    <RoutesContext.Provider value={payload}>{children}</RoutesContext.Provider>
   );
 }
 

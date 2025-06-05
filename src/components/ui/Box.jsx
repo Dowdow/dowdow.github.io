@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export default function Box({ className = '', children }) {
+export default function Box({ className = "", children }) {
   return (
     <div className={`p-6 border border-prim/10 rounded-md ${className}`}>
       {children}
@@ -15,5 +14,5 @@ Box.propTypes = {
 };
 
 Box.defaultProps = {
-  className: '',
+  className: "",
 };

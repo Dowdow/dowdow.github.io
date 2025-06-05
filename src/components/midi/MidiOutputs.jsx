@@ -1,10 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Box from '../ui/Box';
-import Switch from '../ui/Switch';
-import Button from '../ui/Button';
+import PropTypes from "prop-types";
+import Box from "../ui/Box";
+import Switch from "../ui/Switch";
+import Button from "../ui/Button";
 
-export default function MidiOutputs({ outputs, support = null, permissionState = null, request, toggle }) {
+export default function MidiOutputs({
+  outputs,
+  support = null,
+  permissionState = null,
+  request,
+  toggle,
+}) {
   if (support === null) {
     return (
       <Box>
@@ -21,20 +26,25 @@ export default function MidiOutputs({ outputs, support = null, permissionState =
     );
   }
 
-  if (permissionState === 'denied') {
+  if (permissionState === "denied") {
     return (
       <Box className="bg-red-600/10">
-        <span>Permissions for Midi device use are denied. Check your browser settings.</span>
+        <span>
+          Permissions for Midi device use are denied. Check your browser
+          settings.
+        </span>
       </Box>
     );
   }
 
-  if (permissionState === 'prompt') {
+  if (permissionState === "prompt") {
     return (
       <Box className="flex justify-between items-center gap-6 bg-blue-600/10">
         <div>
           <h2 className="text-lg font-bold tracking-tight">Midi permissions</h2>
-          <div className="text-sm tracking-tight text-prim/50">You need to authorize Midi device use.</div>
+          <div className="text-sm tracking-tight text-prim/50">
+            You need to authorize Midi device use.
+          </div>
         </div>
         <Button onClick={request}>Allow</Button>
       </Box>
@@ -50,13 +60,21 @@ export default function MidiOutputs({ outputs, support = null, permissionState =
   }
 
   return outputs
-    .sort((a, b) => { if (a.id > b.id) return 1; if (a.id < b.id) return -1; return 0; })
+    .sort((a, b) => {
+      if (a.id > b.id) return 1;
+      if (a.id < b.id) return -1;
+      return 0;
+    })
     .map((mo) => (
       <Box key={mo.id} className="flex justify-between items-center gap-x-6">
         <div>
           <h2 className="text-lg font-bold tracking-tight">{mo.name}</h2>
-          <div className="text-sm tracking-tight text-prim/50">{mo.manufacturer}</div>
-          <div className="text-xs tracking-tight text-prim/50">{mo.version}</div>
+          <div className="text-sm tracking-tight text-prim/50">
+            {mo.manufacturer}
+          </div>
+          <div className="text-xs tracking-tight text-prim/50">
+            {mo.version}
+          </div>
         </div>
         <Switch init={mo.activated} toggle={() => toggle(mo.id)} />
       </Box>

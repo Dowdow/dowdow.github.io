@@ -1,12 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export default function FormGroup({ children, className = '' }) {
-  return (
-    <div className={`grid gap-1 ${className}`}>
-      {children}
-    </div>
-  );
+export default function FormGroup({ children, className = "" }) {
+  return <div className={`grid gap-1 ${className}`}>{children}</div>;
 }
 
 FormGroup.propTypes = {
@@ -15,5 +10,5 @@ FormGroup.propTypes = {
 };
 
 FormGroup.defaultProps = {
-  className: '',
+  className: "",
 };
