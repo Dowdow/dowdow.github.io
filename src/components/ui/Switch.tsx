@@ -1,7 +1,16 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 
-export default function Switch({ toggle, init = false, disabled = false }) {
+interface SwitchProps {
+  toggle: () => void;
+  init: boolean;
+  disabled?: boolean;
+}
+
+export default function Switch({
+  toggle,
+  init = false,
+  disabled = false,
+}: SwitchProps) {
   const [checked, setChecked] = useState(init);
 
   const onToggle = () => {
@@ -26,14 +35,3 @@ export default function Switch({ toggle, init = false, disabled = false }) {
     </button>
   );
 }
-
-Switch.propTypes = {
-  toggle: PropTypes.func.isRequired,
-  init: PropTypes.bool,
-  disabled: PropTypes.bool,
-};
-
-Switch.defaultProps = {
-  init: false,
-  disabled: false,
-};

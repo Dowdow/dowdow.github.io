@@ -1,9 +1,15 @@
-import PropTypes from "prop-types";
+import type { MouseEvent } from "react";
 import Box from "../ui/Box";
 import Button from "../ui/Button";
+import type { Log } from "../../hooks/logs";
 
-export default function Logs({ logs, clear }) {
-  const handleClearLogs = (event) => {
+interface LogsProps {
+  logs: Log[];
+  clear: () => void;
+}
+
+export default function Logs({ logs, clear }: LogsProps) {
+  const handleClearLogs = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     clear();
   };
@@ -24,7 +30,6 @@ export default function Logs({ logs, clear }) {
       <div className="flex flex-col w-full lg:h-88 xl:h-48 mt-5 lg:overflow-y-scroll">
         {logs
           .sort((a, b) => b.id - a.id)
-          // eslint-disable-next-line react/no-array-index-key
           .map((l, index) => (
             <Log key={`${l.id}-${index}`} id={l.id} data={l.data} />
           ))}
@@ -33,27 +38,14 @@ export default function Logs({ logs, clear }) {
   );
 }
 
-function Log({ id, data }) {
+function Log({ id, data }: Log) {
   const date = new Date(id);
   return (
     <div className="flex flex-row justify-between pr-3">
       <span className=" w-24 text-blue-600">{`${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}:${date.getMilliseconds().toString().padStart(3, "0")}`}</span>
-      {
-        // eslint-disable-next-line react/no-array-index-key
-        data.map((d, i) => (
-          <span key={i}>{d}</span>
-        ))
-      }
+      {data.map((d, i) => (
+        <span key={i}>{d}</span>
+      ))}
     </div>
   );
 }
-
-Logs.propTypes = {
-  logs: PropTypes.array.isRequired,
-  clear: PropTypes.func.isRequired,
-};
-
-Log.propTypes = {
-  id: PropTypes.number.isRequired,
-  data: PropTypes.array.isRequired,
-};

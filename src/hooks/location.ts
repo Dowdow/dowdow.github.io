@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const HASH_MIDI = '#midi';
-export const HASH_ROUTING = '#routing';
+export const HASH_MIDI = "#midi";
+export const HASH_ROUTING = "#routing";
 
 export function useLocationHash() {
   const [hash, setHash] = useState(window.location.hash);
@@ -11,9 +11,9 @@ export function useLocationHash() {
       setHash(window.location.hash);
     }
 
-    window.addEventListener('hashchange', hashChange);
+    window.addEventListener("hashchange", hashChange);
     return () => {
-      window.removeEventListener('hashchange', hashChange);
+      window.removeEventListener("hashchange", hashChange);
     };
   }, []);
 

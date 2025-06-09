@@ -38,12 +38,7 @@ export default function Midi() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-12 items-start gap-6 pt-6">
         <div className="md:col-span-3 lg:col-span-1 xl:col-span-5">
-          <Rules
-            rules={rules}
-            add={addRule}
-            remove={removeRule}
-            toggle={ruleToggle}
-          />
+          <Rules rules={rules} remove={removeRule} toggle={ruleToggle} />
         </div>
         <div className="grid md:col-span-2 lg:col-span-1 xl:col-span-4 gap-6">
           <Gamepads

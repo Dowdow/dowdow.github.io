@@ -1,5 +1,4 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Box from "../ui/Box";
 import Button from "../ui/Button";
 import FormGroup from "../ui/FormGroup";
@@ -11,8 +10,13 @@ import {
   MIDI_TYPE_NOTE_OFF,
   MIDI_TYPE_NOTE_ON,
 } from "../../hooks/midi";
+import type { Rule } from "../../hooks/rules";
 
-export default function RuleForm({ add }) {
+interface RuleFormProps {
+  add: (rule: Rule) => void;
+}
+
+export default function RuleForm({ add }: RuleFormProps) {
   const [midiMessageType, setMidiMessageType] = useState(MIDI_TYPE_NOTE_ON);
   const [midiMessageChannel, setMidiMessageChannel] = useState(0);
   const [midiMessageValue1, setMidiMessageValue1] = useState(127);
@@ -24,37 +28,45 @@ export default function RuleForm({ add }) {
 
   const midiValue2Disabled = midiMessageType === MIDI_TYPE_CC;
 
-  const handleMidiMessageTypeChange = (event) => {
+  const handleMidiMessageTypeChange = (
+    event: ChangeEvent<HTMLSelectElement>,
+  ) => {
     setMidiMessageType(parseInt(event.target.value, 10));
   };
 
-  const handleMidiMessageChannelChange = (event) => {
+  const handleMidiMessageChannelChange = (
+    event: ChangeEvent<HTMLSelectElement>,
+  ) => {
     setMidiMessageChannel(parseInt(event.target.value, 10));
   };
 
-  const handleMidiMessageValue1Change = (event) => {
+  const handleMidiMessageValue1Change = (
+    event: ChangeEvent<HTMLSelectElement>,
+  ) => {
     setMidiMessageValue1(parseInt(event.target.value, 10));
   };
 
-  const handleMidiMessageValue2Change = (event) => {
+  const handleMidiMessageValue2Change = (
+    event: ChangeEvent<HTMLSelectElement>,
+  ) => {
     setMidiMessageValue2(parseInt(event.target.value, 10));
   };
 
-  const handleGamepadIndexChange = (event) => {
+  const handleGamepadIndexChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === "") return;
     setGamepadIndex(parseInt(event.target.value, 10));
   };
 
-  const handleButtonTypeChange = (event) => {
+  const handleButtonTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setButtonType(parseInt(event.target.value, 10));
   };
 
-  const handleButtonIndexChange = (event) => {
+  const handleButtonIndexChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === "") return;
     setButtonIndex(parseInt(event.target.value, 10));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     add({
       id: Date.now(),
@@ -165,7 +177,3 @@ export default function RuleForm({ add }) {
     </Box>
   );
 }
-
-RuleForm.propTypes = {
-  add: PropTypes.func.isRequired,
-};

@@ -9,13 +9,16 @@ import { usePost } from "../hooks/posts";
 export default function Post() {
   const { slug } = useParams();
   const post = usePost(slug);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<string | null>(null);
 
   useEffect(() => {
+    if (post === undefined) {
+      return;
+    }
     fetch(post.file)
       .then((response) => response.text())
       .then((markdown) => setData(markdown));
-  }, []);
+  }, [post]);
 
   if (data === null) {
     return <Loading />;

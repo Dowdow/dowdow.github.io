@@ -1,10 +1,16 @@
-import PropTypes from "prop-types";
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
 import { midiTypeNameFromId } from "../../hooks/midi";
+import type { Rule } from "../../hooks/rules";
 import trash from "../../assets/trash.svg";
 
-export default function Rules({ rules, remove, toggle }) {
+interface RulesProps {
+  rules: Rule[];
+  remove: (id: number) => void;
+  toggle: (id: number) => void;
+}
+
+export default function Rules({ rules, remove, toggle }: RulesProps) {
   return (
     <Box>
       <h2 className="text-lg font-bold tracking-tight">Rules</h2>
@@ -69,9 +75,3 @@ export default function Rules({ rules, remove, toggle }) {
     </Box>
   );
 }
-
-Rules.propTypes = {
-  rules: PropTypes.array.isRequired,
-  remove: PropTypes.func.isRequired,
-  toggle: PropTypes.func.isRequired,
-};

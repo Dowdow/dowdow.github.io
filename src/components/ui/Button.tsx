@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import type { ButtonHTMLAttributes } from "react";
 
 export default function Button({
   type = "button",
@@ -6,30 +6,17 @@ export default function Button({
   children,
   onClick,
   disabled = false,
-}) {
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       type={type}
       className={`inline-flex items-center justify-center whitespace-nowrap shrink-0 rounded-sm font-medium bg-prim/20 hover:bg-prim/15 disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 ${className}`}
       onClick={onClick}
       disabled={disabled}
+      {...props}
     >
       {children}
     </button>
   );
 }
-
-Button.propTypes = {
-  type: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-};
-
-Button.defaultProps = {
-  type: "button",
-  className: "",
-  onClick: undefined,
-  disabled: false,
-};

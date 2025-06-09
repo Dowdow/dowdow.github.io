@@ -1,12 +1,25 @@
-import React, { useEffect, useMemo, useReducer, useState } from "react";
-import PropTypes from "prop-types";
-
-export const RoutesContext = React.createContext();
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+  type PropsWithChildren,
+} from "react";
+import { RoutesContext } from "./context";
 
 const ADD = "add";
 const RESET = "reset";
 
-function reducer(state = [], action = {}) {
+interface ReducerType {
+  type: string;
+  payload: string;
+}
+
+function reducer(
+  state: Array<string> = [],
+  action: ReducerType = { type: "", payload: "" },
+): Array<string> {
   switch (action.type) {
     case ADD:
       return [...state, action.payload];
@@ -17,7 +30,7 @@ function reducer(state = [], action = {}) {
   }
 }
 
-export default function Routes({ children }) {
+export default function Routes({ children }: PropsWithChildren) {
   const [hash, setHash] = useState(window.location.hash);
   const [matches, dispatch] = useReducer(reducer, []);
 
@@ -33,9 +46,9 @@ export default function Routes({ children }) {
     };
   }, []);
 
-  const addMatch = (match) => {
+  const addMatch = useCallback((match: string) => {
     dispatch({ type: ADD, payload: match });
-  };
+  }, []);
 
   const payload = useMemo(
     () => ({ hash, matches, addMatch }),
@@ -46,7 +59,3 @@ export default function Routes({ children }) {
     <RoutesContext.Provider value={payload}>{children}</RoutesContext.Provider>
   );
 }
-
-Routes.propTypes = {
-  children: PropTypes.node.isRequired,
-};

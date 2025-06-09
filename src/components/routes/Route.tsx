@@ -1,9 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { RoutesContext } from "./Routes";
 import { match } from "../../hooks/routing";
+import { RoutesContext } from "./context";
 
-export default function Route({ to = null, element }) {
+interface RouteProps {
+  to?: string;
+  element: React.ReactNode;
+}
+
+export default function Route({ to = "", element }: RouteProps) {
   const { hash, addMatch } = useContext(RoutesContext);
   const [matched, setMatched] = useState(false);
 
@@ -13,16 +17,7 @@ export default function Route({ to = null, element }) {
     if (m) {
       addMatch(to);
     }
-  }, [hash]);
+  }, [hash, to, addMatch]);
 
   return matched ? element : null;
 }
-
-Route.propTypes = {
-  to: PropTypes.string,
-  element: PropTypes.element.isRequired,
-};
-
-Route.defaultProps = {
-  to: null,
-};

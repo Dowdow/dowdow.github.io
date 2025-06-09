@@ -1,13 +1,25 @@
-import PropTypes from "prop-types";
+import type { GamepadInfo } from "../../hooks/gamepad";
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
+
+interface GamepadsProps {
+  gamepads: Array<GamepadInfo>;
+  gamepadsData: Array<Gamepad | null>;
+  support: boolean | null;
+  toggle: (index: number) => void;
+}
+
+interface GamepadProps {
+  index: number;
+  value: number;
+}
 
 export default function Gamepads({
   gamepads,
   gamepadsData,
   support = null,
   toggle,
-}) {
+}: GamepadsProps) {
   if (support === null) {
     return (
       <Box>
@@ -46,8 +58,7 @@ export default function Gamepads({
             <Switch init={g.activated} toggle={() => toggle(g.index)} />
           </div>
           <div className="flex flex-row flex-wrap gap-1 pt-3">
-            {gamepadsData[g.index].buttons.map((button, i) => (
-              // eslint-disable-next-line react/no-array-index-key
+            {gamepadsData[g.index]?.buttons.map((button, i) => (
               <GamepadButton
                 key={`button-${g.index}-${i}`}
                 index={i}
@@ -56,8 +67,7 @@ export default function Gamepads({
             ))}
           </div>
           <div className="flex flex-row flex-wrap gap-1 pt-3">
-            {gamepadsData[g.index].axes.map((axe, i) => (
-              // eslint-disable-next-line react/no-array-index-key
+            {gamepadsData[g.index]?.axes.map((axe, i) => (
               <GamepadAxe key={`axe-${g.index}-${i}`} index={i} value={axe} />
             ))}
           </div>
@@ -66,7 +76,7 @@ export default function Gamepads({
     });
 }
 
-function GamepadButton({ index, value }) {
+function GamepadButton({ index, value }: GamepadProps) {
   const y2 = 40 - Math.min(Math.max(value, 0), 1) * 40;
 
   return (
@@ -84,7 +94,7 @@ function GamepadButton({ index, value }) {
   );
 }
 
-function GamepadAxe({ index, value }) {
+function GamepadAxe({ index, value }: GamepadProps) {
   const y2 = 40 - ((Math.min(Math.max(value, -1), 1) + 1) / 2) * 40;
 
   return (
@@ -101,24 +111,3 @@ function GamepadAxe({ index, value }) {
     </div>
   );
 }
-
-Gamepads.propTypes = {
-  gamepads: PropTypes.array.isRequired,
-  gamepadsData: PropTypes.array.isRequired,
-  support: PropTypes.bool,
-  toggle: PropTypes.func.isRequired,
-};
-
-Gamepads.defaultProps = {
-  support: null,
-};
-
-GamepadButton.propTypes = {
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-GamepadAxe.propTypes = {
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};

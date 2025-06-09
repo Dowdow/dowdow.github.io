@@ -1,7 +1,15 @@
-import PropTypes from "prop-types";
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
 import Button from "../ui/Button";
+import type { MidiOutputInfo } from "../../hooks/midi";
+
+interface MidiOutputsProps {
+  outputs: MidiOutputInfo[];
+  support: boolean | null;
+  permissionState: string | null;
+  request: () => Promise<void>;
+  toggle: (id: string) => void;
+}
 
 export default function MidiOutputs({
   outputs,
@@ -9,7 +17,7 @@ export default function MidiOutputs({
   permissionState = null,
   request,
   toggle,
-}) {
+}: MidiOutputsProps) {
   if (support === null) {
     return (
       <Box>
@@ -80,16 +88,3 @@ export default function MidiOutputs({
       </Box>
     ));
 }
-
-MidiOutputs.propTypes = {
-  outputs: PropTypes.array.isRequired,
-  support: PropTypes.bool,
-  permissionState: PropTypes.string,
-  request: PropTypes.func.isRequired,
-  toggle: PropTypes.func.isRequired,
-};
-
-MidiOutputs.defaultProps = {
-  support: null,
-  permissionState: null,
-};
