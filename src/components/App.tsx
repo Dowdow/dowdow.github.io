@@ -6,6 +6,7 @@ import Loading from "./ui/Loading";
 import ServiceWorkerButton from "./ui/ServiceWorkerButton";
 import { HASH_MIDI, HASH_POST, HASH_POSTS } from "../hooks/routing";
 import github from "../assets/github-mark-white.svg";
+import linkedin from "../assets/linkedin.png";
 
 const Home = lazy(() => import("./Home"));
 const Midi = lazy(() => import("./Midi"));
@@ -41,6 +42,18 @@ export default function App() {
               className="p-2 hover:bg-prim/15 rounded-md"
             >
               <img src={github} alt="Dowdow GitHub page" className="w-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/l%C3%A9o-riera-36383189/"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 hover:bg-prim/15 rounded-md"
+            >
+              <img
+                src={linkedin}
+                alt="Léo Riera LinkedIn page"
+                className="w-6"
+              />
             </a>
           </div>
         </div>
