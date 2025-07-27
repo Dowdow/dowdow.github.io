@@ -7,9 +7,13 @@ export default function Home() {
   return (
     <>
       <ImageViewer />
-      <div className="flex justify-between items-center gap-20 m-20">
-        <div className="min-w-80">
-          <img src={me} alt="Léo Riera" className="w-80 rounded" />
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start lg:items-center gap-5 md:gap-10 lg:gap-20 my-5 md:my-20 mx-0 md:mx-10 lg:mx-20">
+        <div className="min-w-60 md:min-w-40 lg:min-w-80">
+          <img
+            src={me}
+            alt="Léo Riera"
+            className="w-60 md:w-40 lg:w-80 rounded"
+          />
         </div>
         <div className="grow">
           <h1 className="text-5xl font-bold tracking-tighter">Léo Riera</h1>
@@ -45,7 +49,7 @@ export default function Home() {
         <div className="flex justify-center">
           <h2 className="text-6xl font-bold tracking-tighter">Projects</h2>
         </div>
-        <div className="grid grid-cols-3 gap-10 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
           {projects.map((p, index) => (
             <Project
               key={index}

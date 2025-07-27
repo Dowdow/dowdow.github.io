@@ -18,12 +18,12 @@ export default function App() {
   return (
     <>
       <header className="flex items-center w-full h-14 px-4 border-b border-b-prim/5">
-        <div className="container mx-auto flex flex-row items-center gap-6 md:gap-12">
-          <Link to="/" className="flex flex-col text-xl font-bold">
+        <div className="container mx-auto flex flex-row items-center gap-3 md:gap-12">
+          <Link to="/" className="flex flex-col text-sm md:text-xl font-bold">
             Léo Riera
             <span className="text-xs font-normal text-prim/60">Developer/</span>
           </Link>
-          <nav className="flex flex-row gap-3 md:gap-6 grow text-prim/60 *:hover:text-prim/80">
+          <nav className="flex flex-row gap-2 md:gap-6 grow text-prim/60 *:hover:text-prim/80">
             <Link to="/" className="text-base">
               Home
             </Link>
@@ -42,7 +42,11 @@ export default function App() {
               rel="noreferrer"
               className="p-2 hover:bg-prim/15 rounded-md"
             >
-              <img src={github} alt="Dowdow GitHub page" className="w-6" />
+              <img
+                src={github}
+                alt="Dowdow GitHub page"
+                className="min-w-4 w-6"
+              />
             </a>
             <a
               href="https://www.linkedin.com/in/l%C3%A9o-riera-36383189/"
@@ -53,7 +57,7 @@ export default function App() {
               <img
                 src={linkedin}
                 alt="Léo Riera LinkedIn page"
-                className="w-6"
+                className="min-w-4 w-6"
               />
             </a>
             <a
@@ -65,7 +69,7 @@ export default function App() {
               <img
                 src={spotify}
                 alt="Buzz les Snares Spotify page"
-                className="w-6"
+                className="min-w-4 w-6"
               />
             </a>
           </div>
