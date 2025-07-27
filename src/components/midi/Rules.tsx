@@ -1,7 +1,7 @@
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
-import { midiTypeNameFromId } from "../../hooks/midi";
-import type { Rule } from "../../hooks/rules";
+import { midiTypeNameFromId } from "../../hooks/midi/midi";
+import type { Rule } from "../../hooks/midi/rules";
 import trash from "../../assets/trash.svg";
 
 interface RulesProps {

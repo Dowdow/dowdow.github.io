@@ -1,7 +1,7 @@
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
 import Button from "../ui/Button";
-import type { MidiOutputInfo } from "../../hooks/midi";
+import type { MidiOutputInfo } from "../../hooks/midi/midi";
 
 interface MidiOutputsProps {
   outputs: MidiOutputInfo[];

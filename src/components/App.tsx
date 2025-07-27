@@ -4,9 +4,10 @@ import Route from "./routes/Route";
 import Routes from "./routes/Routes";
 import Loading from "./ui/Loading";
 import ServiceWorkerButton from "./ui/ServiceWorkerButton";
-import { HASH_MIDI, HASH_POST, HASH_POSTS } from "../hooks/routing";
+import { HASH_MIDI, HASH_POST, HASH_POSTS } from "../hooks/routes/routing";
 import github from "../assets/github-mark-white.svg";
 import linkedin from "../assets/linkedin.png";
+import spotify from "../assets/spotify.png";
 
 const Home = lazy(() => import("./Home"));
 const Midi = lazy(() => import("./Midi"));
@@ -52,6 +53,18 @@ export default function App() {
               <img
                 src={linkedin}
                 alt="Léo Riera LinkedIn page"
+                className="w-6"
+              />
+            </a>
+            <a
+              href="https://open.spotify.com/artist/1W5W32xehLZQ2ugKCJwPjo?si=eye346S7TpW98jDspESk-Q"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 hover:bg-prim/15 rounded-md"
+            >
+              <img
+                src={spotify}
+                alt="Buzz les Snares Spotify page"
                 className="w-6"
               />
             </a>

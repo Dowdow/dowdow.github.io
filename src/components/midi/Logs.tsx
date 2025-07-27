@@ -1,7 +1,7 @@
 import type { MouseEvent } from "react";
 import Box from "../ui/Box";
 import Button from "../ui/Button";
-import type { Log } from "../../hooks/logs";
+import type { Log } from "../../hooks/midi/logs";
 
 interface LogsProps {
   logs: Log[];

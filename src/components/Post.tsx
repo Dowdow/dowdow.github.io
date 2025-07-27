@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 import { Prism } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Loading from "./ui/Loading";
-import { useParams } from "../hooks/routing";
+import { useParams } from "../hooks/routes/routing";
 import { usePost } from "../hooks/posts";
 
 export default function Post() {

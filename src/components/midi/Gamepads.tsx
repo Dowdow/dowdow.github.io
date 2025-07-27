@@ -1,4 +1,4 @@
-import type { GamepadInfo } from "../../hooks/gamepad";
+import type { GamepadInfo } from "../../hooks/midi/gamepad";
 import Box from "../ui/Box";
 import Switch from "../ui/Switch";
 

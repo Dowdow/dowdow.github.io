@@ -9,8 +9,8 @@ import {
   MIDI_TYPE_CC,
   MIDI_TYPE_NOTE_OFF,
   MIDI_TYPE_NOTE_ON,
-} from "../../hooks/midi";
-import type { Rule } from "../../hooks/rules";
+} from "../../hooks/midi/midi";
+import type { Rule } from "../../hooks/midi/rules";
 
 interface RuleFormProps {
   add: (rule: Rule) => void;

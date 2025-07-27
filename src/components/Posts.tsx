@@ -1,7 +1,7 @@
 import Box from "./ui/Box";
 import Link from "./routes/Link";
 import { usePosts } from "../hooks/posts";
-import { HASH_POST, generateRoute } from "../hooks/routing";
+import { HASH_POST, generateRoute } from "../hooks/routes/routing";
 
 export default function Posts() {
   const posts = usePosts();

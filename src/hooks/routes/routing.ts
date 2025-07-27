@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RoutesContext } from "../components/routes/context";
+import { RoutesContext } from "../../components/routes/context";
 
 export const HASH_POSTS = "#posts";
 export const HASH_POST = "#posts#{slug}";
