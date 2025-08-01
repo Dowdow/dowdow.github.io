@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-
-const PATH = "/service-worker.js";
+import swUrl from "../service-worker.js?url";
 
 export default function useServiceWorker() {
   const [supported, setSupported] = useState<boolean | null>(null);
@@ -12,7 +11,7 @@ export default function useServiceWorker() {
       try {
         let registration;
         if (register) {
-          registration = await navigator.serviceWorker.register(PATH);
+          registration = await navigator.serviceWorker.register(swUrl);
         } else {
           registration = await navigator.serviceWorker.ready;
         }

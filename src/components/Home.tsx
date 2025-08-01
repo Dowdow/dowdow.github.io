@@ -46,8 +46,11 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-10 mb-40">
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center items-center gap-y-2">
           <h2 className="text-6xl font-bold tracking-tighter">Projects</h2>
+          <span className="text-lg text-prim/60">
+            Every side projects I made, and some from university
+          </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
           {projects.map((p, index) => (

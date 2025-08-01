@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type WheelEvent } from "react";
 
 interface ImageEvent {
   images: string[];
@@ -11,24 +11,24 @@ export default function ImageViewer() {
   const [index, setIndex] = useState<number>(0);
 
   useEffect(() => {
-    function updateImages(event: CustomEventInit<ImageEvent>) {
+    function onUpdateImages(event: CustomEventInit<ImageEvent>) {
       const { images, index } = event.detail as ImageEvent;
       setImages(images);
       setIndex(index);
       setVisible(true);
     }
 
-    function keyPressed(event: KeyboardEvent) {
+    function onKeyUp(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setVisible(false);
       }
     }
 
-    window.addEventListener("image-viewer", updateImages);
-    window.addEventListener("keyup", keyPressed);
+    window.addEventListener("image-viewer", onUpdateImages);
+    window.addEventListener("keyup", onKeyUp);
     return () => {
-      window.removeEventListener("image-viewer", updateImages);
-      window.removeEventListener("keyup", keyPressed);
+      window.removeEventListener("image-viewer", onUpdateImages);
+      window.removeEventListener("keyup", onKeyUp);
     };
   }, []);
 
@@ -47,12 +47,28 @@ export default function ImageViewer() {
     }
   }, [index, images]);
 
+  const onWheel = (event: WheelEvent) => {
+    const isTrackpad =
+      event.deltaMode === 0 &&
+      (Math.abs(event.deltaX) > 0 || Math.abs(event.deltaY) < 50);
+
+    if (!isTrackpad) {
+      event.currentTarget.scrollBy({
+        left: event.deltaY * 10,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div
       className={`${visible ? "fixed" : "hidden"} top-0 left-0 w-full h-full bg-black/50 backdrop-blur`}
       onClick={() => setVisible(false)}
     >
-      <div className="relative w-full h-full flex items-center gap-20 snap-x snap-mandatory overflow-x-auto px-2 md:px-10 lg:px-20">
+      <div
+        className="relative w-full h-full flex items-center gap-20 snap-x snap-mandatory overflow-x-auto px-2 md:px-10 lg:px-20"
+        onWheel={onWheel}
+      >
         {images.map((image, i) => (
           <div
             key={i}
