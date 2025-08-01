@@ -1,4 +1,14 @@
+import banshee_banshee from "../assets/projects/banshee/Banshee.png";
+import banshee_collection from "../assets/projects/banshee/Collection.png";
+import banshee_orbit from "../assets/projects/banshee/Orbit.png";
+import banshee_sounds from "../assets/projects/banshee/Sounds.png";
+import banshee_trials from "../assets/projects/banshee/Trials.png";
+import banshee_triumphs from "../assets/projects/banshee/Triumphs.png";
+import banshee_weapons from "../assets/projects/banshee/Weapons.png";
+import banshee_winner from "../assets/projects/banshee/Winner.png";
+
 import dowfiles_arch from "../assets/projects/dowfiles/arch.png";
+
 import steelseries_progress from "../assets/projects/steelseries/progress.jpg";
 import steelseries_scanning from "../assets/projects/steelseries/scanning.jpg";
 import steelseries_sse from "../assets/projects/steelseries/sse.png";
@@ -33,6 +43,31 @@ export const projects = [
       {
         name: "GitHub",
         link: "https://github.com/Dowdow/dowfiles",
+      },
+    ],
+  },
+  {
+    name: "Trials of Banshee",
+    description:
+      "Daily type game where you have to find weapons by their sound effect, based on the Destiny 2 video game.",
+    images: [
+      banshee_orbit,
+      banshee_banshee,
+      banshee_trials,
+      banshee_winner,
+      banshee_triumphs,
+      banshee_collection,
+      banshee_weapons,
+      banshee_sounds,
+    ],
+    links: [
+      {
+        name: "GitHub",
+        link: "https://github.com/Dowdow/trials-of-banshee",
+      },
+      {
+        name: "GitHub Translations",
+        link: "https://github.com/Dowdow/trials-of-banshee-translations",
       },
     ],
   },

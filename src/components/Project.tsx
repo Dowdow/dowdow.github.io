@@ -47,7 +47,7 @@ export default function Project({
         </div>
       ) : null}
       {links.length > 0 ? (
-        <div className="flex mt-5">
+        <div className="flex mt-5 gap-5">
           {links.map((l, index) => (
             <a
               key={`link-${index}`}

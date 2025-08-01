@@ -19,7 +19,7 @@ export default function App() {
     <>
       <header className="flex items-center w-full h-14 px-4 border-b border-b-prim/5">
         <div className="container mx-auto flex flex-row items-center gap-3 md:gap-12">
-          <Link to="/" className="flex flex-col text-sm md:text-xl font-bold">
+          <Link to="/" className="flex flex-col text-xs md:text-xl font-bold">
             Léo Riera
             <span className="text-xs font-normal text-prim/60">Developer/</span>
           </Link>
