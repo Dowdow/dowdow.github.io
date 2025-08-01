@@ -66,13 +66,13 @@ export default function ImageViewer() {
       onClick={() => setVisible(false)}
     >
       <div
-        className="relative w-full h-full flex items-center gap-20 snap-x snap-mandatory overflow-x-auto px-2 md:px-10 lg:px-20"
+        className="relative w-full h-full flex items-center gap-20 snap-x snap-mandatory overflow-x-auto p-2 md:p-10 lg:p-20"
         onWheel={onWheel}
       >
         {images.map((image, i) => (
           <div
             key={i}
-            className="w-full h-full md:h-4/5 md:w-4/5 shrink-0 snap-center"
+            className="h-full md:h-4/5 max-w-full shrink-0 snap-center"
             data-image-index={i}
           >
             <img

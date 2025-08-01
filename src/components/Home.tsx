@@ -58,6 +58,7 @@ export default function Home() {
               key={index}
               name={p.name}
               description={p.description}
+              date={p.date}
               images={p.images}
               links={p.links}
             />
