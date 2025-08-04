@@ -46,6 +46,7 @@ export const projects = [
       steelseries_tray,
       steelseries_tray_click,
     ],
+    tools: ["Go", "Fyne", "SteelSeries GameSense SDK"],
     links: [
       {
         name: "GitHub",
@@ -59,6 +60,15 @@ export const projects = [
       "My dotfiles and tools configuration (zsh, fzf, etc...) + Arch Linux scripts and configuration.",
     date: "2024-04",
     images: [dowfiles_arch],
+    tools: [
+      "Arch Linux",
+      "zsh",
+      "fzf",
+      "bat",
+      "Hyprland",
+      "Waybar",
+      "Alacritty",
+    ],
     links: [
       {
         name: "GitHub",
@@ -81,6 +91,15 @@ export const projects = [
       banshee_weapons,
       banshee_sounds,
     ],
+    tools: [
+      "PHP 8.2",
+      "Symfony 6.4",
+      "React 18",
+      "Tailwind",
+      "Docker",
+      "Ansible",
+      "Bungie APIs",
+    ],
     links: [
       {
         name: "GitHub",
@@ -98,6 +117,17 @@ export const projects = [
       "Find music events around you by artist, place or event planners.",
     date: "2019-07",
     images: [event_es],
+    tools: [
+      "PHP 8.1",
+      "Symfony 6.2",
+      "React 18",
+      "Tailwind",
+      "Puppeteer",
+      "Chrome Extension",
+      "Docker",
+      "Ansible",
+      "Geo IP",
+    ],
     links: [
       {
         name: "GitHub Organization",
@@ -111,6 +141,15 @@ export const projects = [
       "A simple tool for Destiny 2 vanilla to create the perfect stats build.",
     date: "2017-12",
     images: [destiny_builder],
+    tools: [
+      "NodeJS",
+      "React 16",
+      "MongoDB",
+      "Express",
+      "Redux",
+      "Webpack",
+      "Bungie APIs",
+    ],
     links: [
       {
         name: "GitHub",
@@ -124,6 +163,14 @@ export const projects = [
       "Discord bot written in JS used to fetch ranking infos throught many game apis.",
     date: "2016-11",
     images: [],
+    tools: [
+      "NodeJS",
+      "eslint",
+      "discord.js",
+      "winston",
+      "Blizzard APIs",
+      "Riot Games APIs",
+    ],
     links: [
       {
         name: "GitHub",
@@ -137,6 +184,7 @@ export const projects = [
       "Android MP3 Player with Proximity Sensor. Change music with hand gesture and voice.",
     date: "2016-08",
     images: [hubble_main, hubble_hand, hubble_voice],
+    tools: ["Java", "Android SDK"],
     links: [
       {
         name: "GitHub",
@@ -150,6 +198,7 @@ export const projects = [
       "Android application for Biofeedback with a Bluetooth Zephyr Bioharness 3 belt. Part of university project.",
     date: "2015-05",
     images: [],
+    tools: ["Java", "Android SDK"],
     links: [
       {
         name: "GitHub",
@@ -163,6 +212,7 @@ export const projects = [
       "The Othello board game written in Java with different levels of AI. Part of university project.",
     date: "2014-11",
     images: [othello],
+    tools: ["Java"],
     links: [
       {
         name: "GitHub",
@@ -176,6 +226,7 @@ export const projects = [
       "My first portfolio with authentication and likes and comment on posts.",
     date: "2013-09",
     images: [banana_desktop, banana_mobile],
+    tools: ["PHP 7.1", "Symfony 4", "NodeJS", "socket.io"],
     links: [
       {
         name: "GitHub",
@@ -189,6 +240,7 @@ export const projects = [
       "A C# video game using the XNA game engine and playable throught a Kinect. Part of university project.",
     date: "2013-02",
     images: [spider_title, spider_difficulty, spider_game, spider_pgcr],
+    tools: ["C#", "XNA", "Kinect SDK"],
     links: [
       {
         name: "GitHub",

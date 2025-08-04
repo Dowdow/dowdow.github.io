@@ -10,6 +10,7 @@ interface ProjectProps {
   description: string;
   date: string;
   images: string[];
+  tools: string[];
   links: Link[];
 }
 
@@ -18,6 +19,7 @@ export default function Project({
   description,
   date,
   images,
+  tools,
   links,
 }: ProjectProps) {
   const showImages = (index: number) => {
@@ -47,7 +49,19 @@ export default function Project({
           />
         ))}
       </div>
-      <div className="flex mt-5 gap-5">
+      <div className="flex flex-wrap mt-5 gap-x-2 gap-y-0.5">
+        {tools.map((t, index) => (
+          <>
+            <span key={index} className="text-prim/60 italic">
+              {t}
+            </span>
+            {index < tools.length - 1 ? (
+              <span className="text-prim/60 italic">-</span>
+            ) : null}
+          </>
+        ))}
+      </div>
+      <div className="flex mt-3 gap-5">
         {links.map((l, index) => (
           <a
             key={`link-${index}`}

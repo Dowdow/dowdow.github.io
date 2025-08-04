@@ -49,7 +49,7 @@ export default function App() {
               />
             </a>
             <a
-              href="https://www.linkedin.com/in/l%C3%A9o-riera-36383189/"
+              href="https://www.linkedin.com/in/dowdow/"
               target="_blank"
               rel="noreferrer"
               className="p-2 hover:bg-prim/15 rounded-md"
@@ -61,7 +61,7 @@ export default function App() {
               />
             </a>
             <a
-              href="https://open.spotify.com/artist/1W5W32xehLZQ2ugKCJwPjo?si=eye346S7TpW98jDspESk-Q"
+              href="https://open.spotify.com/artist/1W5W32xehLZQ2ugKCJwPjo"
               target="_blank"
               rel="noreferrer"
               className="p-2 hover:bg-prim/15 rounded-md"

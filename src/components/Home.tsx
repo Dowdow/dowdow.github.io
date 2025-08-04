@@ -60,6 +60,7 @@ export default function Home() {
               description={p.description}
               date={p.date}
               images={p.images}
+              tools={p.tools}
               links={p.links}
             />
           ))}
