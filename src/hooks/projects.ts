@@ -10,6 +10,8 @@ import banshee_triumphs from "../assets/projects/banshee/Triumphs.png";
 import banshee_weapons from "../assets/projects/banshee/Weapons.png";
 import banshee_winner from "../assets/projects/banshee/Winner.png";
 
+import destiny_builder from "../assets/projects/destiny/builder.png";
+
 import dowfiles_arch from "../assets/projects/dowfiles/arch.png";
 
 import event_es from "../assets/projects/event/es.png";
@@ -17,6 +19,8 @@ import event_es from "../assets/projects/event/es.png";
 import hubble_main from "../assets/projects/hubble/main.png";
 import hubble_hand from "../assets/projects/hubble/hand.png";
 import hubble_voice from "../assets/projects/hubble/voice.png";
+
+import othello from "../assets/projects/othello/othello.png";
 
 import spider_title from "../assets/projects/spider/title.png";
 import spider_difficulty from "../assets/projects/spider/difficulty.png";
@@ -106,7 +110,7 @@ export const projects = [
     description:
       "A simple tool for Destiny 2 vanilla to create the perfect stats build.",
     date: "2017-12",
-    images: [],
+    images: [destiny_builder],
     links: [
       {
         name: "GitHub",
@@ -158,7 +162,7 @@ export const projects = [
     description:
       "The Othello board game written in Java with different levels of AI. Part of university project.",
     date: "2014-11",
-    images: [],
+    images: [othello],
     links: [
       {
         name: "GitHub",
