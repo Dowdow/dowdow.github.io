@@ -1,9 +1,19 @@
 import me from "../assets/me.jpg";
 import Project from "./Project";
+import useBreakpoint from "../hooks/breakpoint";
 import { projects } from "../hooks/projects";
 import ImageViewer from "./ImageViewer";
+import { useMemo } from "react";
 
 export default function Home() {
+  const breakpoint = useBreakpoint();
+
+  const breakpointCount = useMemo(() => {
+    if (breakpoint === "lg") return 3;
+    if (breakpoint === "md") return 2;
+    return 1;
+  }, [breakpoint]);
+
   return (
     <>
       <ImageViewer />
@@ -52,17 +62,23 @@ export default function Home() {
             Every side projects I made, and some from university
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-          {projects.map((p, index) => (
-            <Project
-              key={index}
-              name={p.name}
-              description={p.description}
-              date={p.date}
-              images={p.images}
-              tools={p.tools}
-              links={p.links}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
+          {Array.from({ length: breakpointCount }).map((_, index) => (
+            <div key={index} className="flex flex-col gap-y-10">
+              {projects
+                .filter((_, i) => i % breakpointCount === index)
+                .map((p, i) => (
+                  <Project
+                    key={i}
+                    name={p.name}
+                    description={p.description}
+                    date={p.date}
+                    images={p.images}
+                    tools={p.tools}
+                    links={p.links}
+                  />
+                ))}
+            </div>
           ))}
         </div>
       </div>

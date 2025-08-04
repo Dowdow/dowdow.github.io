@@ -112,6 +112,26 @@ export const projects = [
     ],
   },
   {
+    name: "dowdow.github.io",
+    description: "The current website you are scrolling.",
+    date: "2022-09",
+    images: [],
+    tools: [
+      "Typescript",
+      "Vite",
+      "React 19",
+      "Tailwind",
+      "Gamepad API",
+      "Midi API",
+    ],
+    links: [
+      {
+        name: "GitHub",
+        link: "https://github.com/Dowdow/dowdow.github.io",
+      },
+    ],
+  },
+  {
     name: "Event Sonar",
     description:
       "Find music events around you by artist, place or event planners.",

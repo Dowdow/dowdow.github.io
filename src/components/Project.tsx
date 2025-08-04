@@ -38,18 +38,20 @@ export default function Project({
       <h3 className="text-2xl font-bold tracking-tighter">{name}</h3>
       <span className="text-sm text-prim/60">{date}</span>
       <p className="mt-3 text-prim/80">{description}</p>
-      <div className="flex gap-3 mt-3 h-40 overflow-x-scroll">
-        {images.map((m, index) => (
-          <img
-            key={`img-${index}`}
-            src={m}
-            alt={`${name} image ${index + 1}`}
-            className="w-40 h-40 rounded cursor-pointer object-cover"
-            onClick={() => showImages(index)}
-          />
-        ))}
-      </div>
-      <div className="flex flex-wrap mt-5 gap-x-2 gap-y-0.5">
+      {images.length > 0 ? (
+        <div className="flex gap-3 mt-3 h-40 overflow-x-scroll">
+          {images.map((m, index) => (
+            <img
+              key={`img-${index}`}
+              src={m}
+              alt={`${name} image ${index + 1}`}
+              className="w-40 h-40 rounded cursor-pointer object-cover"
+              onClick={() => showImages(index)}
+            />
+          ))}
+        </div>
+      ) : null}
+      <div className="flex flex-wrap mt-3 gap-x-2 gap-y-0.5">
         {tools.map((t, index) => (
           <>
             <span key={index} className="text-prim/60 italic">
