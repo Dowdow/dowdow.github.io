@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 interface RoutesContextType {
   hash: string;
-  matches: Array<string>;
+  matches: string[];
   addMatch: (match: string) => void;
 }
 

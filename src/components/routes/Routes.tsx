@@ -17,9 +17,9 @@ interface ReducerType {
 }
 
 function reducer(
-  state: Array<string> = [],
+  state: string[] = [],
   action: ReducerType = { type: "", payload: "" },
-): Array<string> {
+): string[] {
   switch (action.type) {
     case ADD:
       return [...state, action.payload];

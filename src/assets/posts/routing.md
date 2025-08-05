@@ -1,4 +1,4 @@
-# Simple Routing system using hashes in React
+# Simple routing system using hashes in React
 
 Sometimes, you might prefer not to rely on third-party dependencies, especially for simple tasks or during the proof-of-concept phase.
 However, implementing such functionalities can be complex, even for simple use cases.
@@ -160,7 +160,7 @@ The `Link` component acts as a simple wrapper around `<a>` with customized behav
 
 When clicked, the `onClick` method first invokes `preventDefault` on the click event to halt any default browser actions, such as page reloading.
 
-Next, we utilize the `History API` to push our new route, followed by dispatching a [`HashChangeEvent`](https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent) for our `location.js` hook to intercept and update all relevant components.
+Next, we utilize the `History API` to push our new route, followed by dispatching a [`HashChangeEvent`](https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent) for our `Routes.jsx` component to intercept and update all relevant components through the context.
 
 With these updates in place, our `App.jsx` component should function correctly now:
 

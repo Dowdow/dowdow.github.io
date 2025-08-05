@@ -3,7 +3,7 @@ import Box from "../ui/Box";
 import Switch from "../ui/Switch";
 
 interface GamepadsProps {
-  gamepads: Array<GamepadInfo>;
+  gamepads: GamepadInfo[];
   gamepadsData: Array<Gamepad | null>;
   support: boolean | null;
   toggle: (index: number) => void;

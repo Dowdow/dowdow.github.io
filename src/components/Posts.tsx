@@ -14,14 +14,24 @@ export default function Posts() {
           Sometimes I feel like writing some posts.
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        {posts.map(({ title, date, slug, file }) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {posts.map(({ title, description, date, image, slug, file }) => (
           <Link key={file} to={generateRoute(HASH_POST, { slug })}>
-            <Box>
-              <div className="text-sm tracking-tight text-prim/50 mb-2">
-                {date}
+            <Box className="flex gap-5">
+              <div className="min-w-40">
+                <img
+                  src={image}
+                  alt={title}
+                  className="h-40 w-40 object-cover rounded"
+                />
               </div>
-              <h2 className="text-lg font-bold tracking-tight">{title}</h2>
+              <div>
+                <span className="text-sm tracking-tight text-prim/50 mb-2">
+                  {date}
+                </span>
+                <h2 className="text-lg font-bold tracking-tight">{title}</h2>
+                <p className="text-prim/80  mt-3">{description}</p>
+              </div>
             </Box>
           </Link>
         ))}

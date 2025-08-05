@@ -180,7 +180,7 @@ export const projects = [
   {
     name: "El Puer Bot",
     description:
-      "Discord bot written in JS used to fetch ranking infos throught many game apis.",
+      "Discord bot written in JS used to fetch ranking infos through many game apis.",
     date: "2016-11",
     images: [],
     tools: [
@@ -257,7 +257,7 @@ export const projects = [
   {
     name: "Spider Game",
     description:
-      "A C# video game using the XNA game engine and playable throught a Kinect. Part of university project.",
+      "A C# video game using the XNA game engine and playable through a Kinect. Part of university project.",
     date: "2013-02",
     images: [spider_title, spider_difficulty, spider_game, spider_pgcr],
     tools: ["C#", "XNA", "Kinect SDK"],

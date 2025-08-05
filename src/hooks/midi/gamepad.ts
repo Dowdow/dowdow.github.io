@@ -23,11 +23,11 @@ export interface ButtonGamePadEvent {
 }
 
 function reducer(
-  state: Array<GamepadInfo> = [],
+  state: GamepadInfo[] = [],
   action: { type: string; gamepad?: GamepadInfo; index?: number } = {
     type: "",
   },
-): Array<GamepadInfo> {
+): GamepadInfo[] {
   switch (action.type) {
     case ADD:
       if (action.gamepad === undefined) break;
