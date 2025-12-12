@@ -16,6 +16,8 @@ import dowfiles_arch from "../assets/projects/dowfiles/arch.png";
 
 import event_es from "../assets/projects/event/es.png";
 
+import gosible from "../assets/projects/gosible/gosible.gif";
+
 import hubble_main from "../assets/projects/hubble/main.png";
 import hubble_hand from "../assets/projects/hubble/hand.png";
 import hubble_voice from "../assets/projects/hubble/voice.png";
@@ -34,6 +36,20 @@ import steelseries_tray from "../assets/projects/steelseries/tray.png";
 import steelseries_tray_click from "../assets/projects/steelseries/tray-click.png";
 
 export const projects = [
+  {
+    name: "gosible",
+    description:
+      "A reinterpretation of Ansible in Go for managing homeservers with a simple json configuration.",
+    date: "2025-10",
+    images: [gosible],
+    tools: ["Go", "bubbletea", "lipgloss"],
+    links: [
+      {
+        name: "GitHub",
+        link: "https://github.com/Dowdow/gosible",
+      },
+    ],
+  },
   {
     name: "SteelSeries Arctis Battery",
     description:
