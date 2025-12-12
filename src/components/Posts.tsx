@@ -15,14 +15,14 @@ export default function Posts() {
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {posts.map(({ title, description, date, image, slug, file }) => (
-          <Link key={file} to={generateRoute(HASH_POST, { slug })}>
-            <Box className="flex gap-5">
+        {posts.map(({ title, description, date, image, slug }) => (
+          <Link key={slug} to={generateRoute(HASH_POST, { slug })}>
+            <Box className="flex md:flex-col lg:flex-row gap-x-6 gap-y-3">
               <div className="min-w-40">
                 <img
                   src={image}
                   alt={title}
-                  className="h-40 w-40 object-cover rounded"
+                  className="h-40 w-40 md:w-full object-cover rounded"
                 />
               </div>
               <div>

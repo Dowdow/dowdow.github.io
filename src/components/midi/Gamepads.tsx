@@ -49,7 +49,7 @@ export default function Gamepads({
     .map((g) => {
       if (!gamepadsData[g.index]) return null;
       return (
-        <Box key={g.index}>
+        <Box key={`gamepad-${g.index}`}>
           <div className="flex justify-between items-center gap-x-6">
             <div className="grow">
               <h2 className="text-lg font-bold tracking-tight">{`Gamepad ${g.index}`}</h2>

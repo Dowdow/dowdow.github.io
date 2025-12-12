@@ -42,7 +42,7 @@ export default function Project({
         <div className="flex gap-3 mt-3 h-40 overflow-x-scroll">
           {images.map((m, index) => (
             <img
-              key={`img-${index}`}
+              key={`project-img-${index}`}
               src={m}
               alt={`${name} image ${index + 1}`}
               className="w-40 h-40 rounded cursor-pointer object-cover"
@@ -53,14 +53,12 @@ export default function Project({
       ) : null}
       <div className="flex flex-wrap mt-3 gap-x-2 gap-y-0.5">
         {tools.map((t, index) => (
-          <>
-            <span key={index} className="text-prim/60 italic">
-              {t}
-            </span>
+          <div key={`tool-${index}`} className="flex flex-wrap gap-x-2">
+            <span className="text-prim/60 italic">{t}</span>
             {index < tools.length - 1 ? (
               <span className="text-prim/60 italic">-</span>
             ) : null}
-          </>
+          </div>
         ))}
       </div>
       <div className="flex mt-3 gap-5">

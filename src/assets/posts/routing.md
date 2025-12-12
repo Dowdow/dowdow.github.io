@@ -79,7 +79,7 @@ export default function Routes({ children }) {
 
 Now, let's create our `Route` component. It serves to render a `React element` when the current hash matches its defined hash. Using the context we set up in the `Routes` component, it retrieves the current hash information. If there's a match, it returns the passed element; otherwise, it returns `null`. This is where you could implement more complex behaviors like wildcards `*` or fallbacks.
 
-For simplicity, we'll keep it straightforward: if there's a match, we return the element. If the defined hash is null, we assume it's the homepage. If nothing matches, it just shows a blank page. (Maybe I'll add 404 support later on).
+For simplicity, we'll keep it straightforward: if there's a match, we return the element. If the defined hash is null, we assume it's the homepage. If nothing matches, it just shows a blank page.
 
 ```jsx
 // Route.jsx

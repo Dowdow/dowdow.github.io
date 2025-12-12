@@ -7,8 +7,8 @@ interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 export default function Link({
   to,
-  children,
   state = {},
+  children,
   ...props
 }: LinkProps) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {

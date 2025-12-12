@@ -71,7 +71,7 @@ export default function ImageViewer() {
       >
         {images.map((image, i) => (
           <div
-            key={i}
+            key={`image-${i}`}
             className="h-full md:h-4/5 max-w-full shrink-0 snap-center"
             data-image-index={i}
           >

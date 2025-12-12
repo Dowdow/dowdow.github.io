@@ -6,25 +6,25 @@ import {
   useState,
   type PropsWithChildren,
 } from "react";
-import { RoutesContext } from "./context";
+import { RoutesContext, type Params } from "./context";
 
 const ADD = "add";
 const RESET = "reset";
 
 interface ReducerType {
   type: string;
-  payload: string;
+  payload: Params;
 }
 
 function reducer(
-  state: string[] = [],
-  action: ReducerType = { type: "", payload: "" },
-): string[] {
+  state: Params = {},
+  action: ReducerType = { type: "", payload: {} },
+): Params {
   switch (action.type) {
     case ADD:
-      return [...state, action.payload];
+      return { ...state, ...action.payload };
     case RESET:
-      return [];
+      return {};
     default:
       return state;
   }
@@ -32,7 +32,7 @@ function reducer(
 
 export default function Routes({ children }: PropsWithChildren) {
   const [hash, setHash] = useState(window.location.hash);
-  const [matches, dispatch] = useReducer(reducer, []);
+  const [params, dispatch] = useReducer(reducer, {});
 
   useEffect(() => {
     function hashChange() {
@@ -46,13 +46,13 @@ export default function Routes({ children }: PropsWithChildren) {
     };
   }, []);
 
-  const addMatch = useCallback((match: string) => {
-    dispatch({ type: ADD, payload: match });
+  const addParams = useCallback((params: Params) => {
+    dispatch({ type: ADD, payload: params });
   }, []);
 
   const payload = useMemo(
-    () => ({ hash, matches, addMatch }),
-    [hash, matches, addMatch],
+    () => ({ hash, params, addParams }),
+    [hash, params, addParams],
   );
 
   return (

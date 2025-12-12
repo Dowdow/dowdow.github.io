@@ -12,12 +12,11 @@ export default function Post() {
   const [data, setData] = useState<string | null>(null);
 
   useEffect(() => {
-    if (post === undefined) {
-      return;
+    if (post !== undefined) {
+      fetch(post.file)
+        .then((response) => response.text())
+        .then((markdown) => setData(markdown));
     }
-    fetch(post.file)
-      .then((response) => response.text())
-      .then((markdown) => setData(markdown));
   }, [post]);
 
   if (data === null) {
@@ -55,6 +54,13 @@ export default function Post() {
               >
                 {children}
               </a>
+            );
+          },
+          li({ children }) {
+            return (
+              <li className="list-disc list-inside pl-2 text-lg md:text-xl">
+                {children}
+              </li>
             );
           },
           pre({ children }) {

@@ -1,13 +1,15 @@
 import { createContext } from "react";
 
+export type Params = { [s: string]: string };
+
 interface RoutesContextType {
   hash: string;
-  matches: string[];
-  addMatch: (match: string) => void;
+  params: Params;
+  addParams: (params: Params) => void;
 }
 
 export const RoutesContext = createContext<RoutesContextType>({
   hash: "",
-  matches: [],
-  addMatch: () => {},
+  params: {},
+  addParams: () => {},
 });

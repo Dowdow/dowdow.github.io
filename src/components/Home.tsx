@@ -64,12 +64,12 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
           {Array.from({ length: breakpointCount }).map((_, index) => (
-            <div key={index} className="flex flex-col gap-y-10">
+            <div key={`div-${index}`} className="flex flex-col gap-y-10">
               {projects
                 .filter((_, i) => i % breakpointCount === index)
                 .map((p, i) => (
                   <Project
-                    key={i}
+                    key={`project-${index}-${i}`}
                     name={p.name}
                     description={p.description}
                     date={p.date}
